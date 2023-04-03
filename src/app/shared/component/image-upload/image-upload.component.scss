@@ -1,0 +1,30 @@
+$grad-start: rgba(208, 188, 255, 0.14);
+$grad-end: rgba(208, 188, 255, 0.14);
+$bg-color: #1c1b1f;
+
+.image__card {
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(0deg, $grad-start, $grad-end), $bg-color;
+  border-radius: 15px;
+
+  &__input {
+    display: none;
+  }
+
+  label {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+
+    .upload__image {
+      height: 100%;
+      width: 100%;
+      color: #938f99;
+      font-size: 4em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

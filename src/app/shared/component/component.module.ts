@@ -3,21 +3,26 @@ import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { RouterModule } from '@angular/router';
 import { CardComponent } from './card/card.component';
+import { ImageUploadComponent } from './image-upload/image-upload.component';
+import { AppMaterialModule } from '../app-material/app-material.module';
 
 
 
 @NgModule({
   exports: [
     ToolbarComponent,
-    CardComponent
+    CardComponent,
+    ImageUploadComponent
   ],
   declarations: [
     ToolbarComponent,
-    CardComponent
+    CardComponent,
+    ImageUploadComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    AppMaterialModule
   ]
 })
 export class ComponentModule { }
