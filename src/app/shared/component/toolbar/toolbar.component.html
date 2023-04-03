@@ -1,0 +1,25 @@
+<header class="toolbar">
+  <button title="hamburger-menu" class="hamburger-menu" (click)="toggleMenu()">
+    <span class="hamburger-menu-icon"></span>
+  </button>
+
+  <a routerLink="/home">
+    <img src="../../../../assets/images/Frame.svg" alt="Logo" class="logo" />
+  </a>
+
+  <a routerLink="/profile">
+    <img
+      src="../../../../assets/images/account_circle_black_24dp.svg"
+      alt="Profile Picture"
+      class="profile-pic"
+    />
+  </a>
+</header>
+
+<div class="menu" [hidden]="!isMenuOpen">
+  <ul>
+    <li *ngFor="let link of links">
+      <a [routerLink]="[link.route]">{{ link.name }}</a>
+    </li>
+  </ul>
+</div>

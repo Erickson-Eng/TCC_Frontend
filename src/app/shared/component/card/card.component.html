@@ -1,0 +1,23 @@
+<div class="card">
+  <img [src]="card.photoUrl" alt="Card Photo" class="card__photo" />
+  <div class="card__content">
+    <h3 class="card__content__name">
+      {{ card.name }}
+    </h3>
+    <h4 class="card__content__subtitle">
+      {{card.address}}
+    </h4>
+    <p class="card__content__description">
+      {{ card.description }}
+    </p>
+
+    <div class="card__content__footer">
+      <ul>
+        <li *ngFor="let sport of card.availableSports">
+          {{ sport }}
+        </li>
+      </ul>
+      <button>Reservar</button>
+    </div>
+  </div>
+</div>

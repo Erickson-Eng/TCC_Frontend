@@ -1,0 +1,94 @@
+.card {
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  flex: 1 0 200px;
+
+  &__photo {
+    width: 35%;
+    height: auto;
+    object-fit: cover;
+    margin-right: 2%;
+
+    @media only screen and (min-width: 768px) {
+      width: 150px;
+      height: 150px;
+      margin-right: 20px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 0.2em;
+
+    &__name {
+      font-size: 1.5em;
+
+      @media only screen and (min-width: 768px) {
+        font-size: 2em;
+      }
+    }
+
+    &__subtitle {
+      font-size: 0.8em;
+      color: #999;
+
+      @media only screen and (min-width: 768px) {
+        font-size: 1em;
+      }
+    }
+    &__description {
+      font-size: 1em;
+      margin-bottom: 0.3em;
+
+      @media only screen and (min-width: 768px) {
+        font-size: 1.2em;
+        margin-bottom: 0.5em;
+      }
+    }
+
+    &__footer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+
+      li {
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 14px;
+        color: #aaa;
+
+        @media only screen and (min-width: 768px) {
+          font-size: 1em;
+        }
+      }
+
+      button {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        &:hover {
+          background-color: #555;
+        }
+
+        @media only screen and (min-width: 768px) {
+          font-size: 18px;
+          padding: 12px 24px;
+        }
+      }
+
+      @media only screen and (min-width: 768px) {
+        padding: 20px;
+        gap: 1em;
+      }
+    }
+  }
+}
