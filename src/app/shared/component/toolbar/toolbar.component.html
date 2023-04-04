@@ -1,25 +1,26 @@
-<header class="toolbar">
-  <button title="hamburger-menu" class="hamburger-menu" (click)="toggleMenu()">
-    <span class="hamburger-menu-icon"></span>
+<mat-toolbar class="toolbar" color="primary">
+  <button mat-icon-button aria-label="" (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
   </button>
 
-  <a routerLink="/home">
-    <img src="../../../../assets/images/Frame.svg" alt="Logo" class="logo" />
+  <a routerLink="/home" class="logo">
+    <img src="../../../../assets/images/Frame.svg" alt="Logo" />
   </a>
 
-  <a routerLink="/profile">
-    <img
-      src="../../../../assets/images/account_circle_black_24dp.svg"
-      alt="Profile Picture"
-      class="profile-pic"
-    />
-  </a>
-</header>
+  <button mat-icon-button aria-label="">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
 
-<div class="menu" [hidden]="!isMenuOpen">
-  <ul>
-    <li *ngFor="let link of links">
-      <a [routerLink]="[link.route]">{{ link.name }}</a>
-    </li>
-  </ul>
-</div>
+<mat-toolbar class="menu" *ngIf="isMenuOpen" color="accent">
+  <mat-toolbar-row>
+    <app-theme-switcher></app-theme-switcher>
+    <mat-icon
+      aria-hidden="false"
+      fontIcon="settings_brightnesssettings_brightness"
+    ></mat-icon>
+  </mat-toolbar-row>
+  <mat-toolbar-row *ngFor="let link of links">
+    <span>{{link.route}}</span>
+  </mat-toolbar-row>
+</mat-toolbar>

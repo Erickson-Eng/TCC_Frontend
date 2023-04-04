@@ -9,7 +9,7 @@ import { Link } from '../../model/Link';
 export class ToolbarComponent {
 
   @Input() links: Link[] = [
-    {name: 'Gym', route:'gym'}
+    {name: '', route:''}
   ];
 
   isMenuOpen = false;
