@@ -1,1 +1,32 @@
-<p>recovery-account works!</p>
+<div class="container">
+  <div class="card">
+    <div class="card__logo">
+      <a routerLink="/account">
+        <img src="../../../../assets/images/Logo_300px.svg" alt="logo" />
+      </a>
+
+      <div class="card__logo_route">
+        <h2 class="divisor__horizontal">Recovery Account</h2>
+        <mat-divider></mat-divider>
+      </div>
+
+      <form action="" class="card__form">
+        <mat-form-field appearance="outline" class="input__field">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="insert you username" required />
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary">
+          Recovery Account
+        </button>
+      </form>
+      <div class="card__link">
+        <button mat-button routerLink="/account/create" type="button">
+          Create Account
+        </button>
+        <button mat-button routerLink="/account" type="button">
+          Contact support
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,7 @@ import { Component, Inject } from '@angular/core';
 })
 export class ThemeSwitcherComponent {
   isDarkThemeActive = false;
+  hidePassword = true;
 
   constructor(@Inject(DOCUMENT) private document: Document) {}
 
