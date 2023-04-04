@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+
+  &__card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    min-width: 350px;
+    max-width: 800px;
+    border-radius: 5px;
+    padding: 2rem;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+
+    &__logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 1em;
+      width: 100%;
+
+      &__status {
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-bottom: 1em;
+      }
+    }
+
+    &__form {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+
+      .input__field{
+        width: 80%;
+      }
+
+      button{
+        width: 30%;
+      }
+    }
+
+    &__link{
+      padding-top: 1em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+}

@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="container__card">
+    <div class="container__card__logo">
+      <img src="../../../../assets/images/Logo_300px.svg" alt="logo" />
+
+      <div class="container__card__logo__status">
+        <h2 class="divisor-horizontal">Sign in</h2>
+        <app-theme-switcher></app-theme-switcher>
+      </div>
+    </div>
+    <form action="" class="container__card__form">
+      <mat-form-field appearance="outline" class="input__field">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="insert you username" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="input__field">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          placeholder="insert you password"
+        />
+        <button
+          type="button"
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <button type="submit" mat-raised-button color="primary">Login</button>
+    </form>
+    <div class="container__card__link">
+      <button mat-button routerLink="/account/create" type="button">
+        Create Account
+      </button>
+      <button mat-button routerLink="/account/recovery" type="button">
+        Recovery Account
+      </button>
+    </div>
+  </div>
+</div>
