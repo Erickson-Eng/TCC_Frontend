@@ -3,14 +3,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 340px;
-  max-height: 600px;
   padding: 1em;
 
   &__photo {
     width: 100%;
     height: 50%;
-    object-fit: cover;
     border-radius: 5px;
   }
 
@@ -21,13 +18,11 @@
     flex-direction: column;
 
     &__body {
-      &__name {
-        font-weight: 500;
-      }
-
+      margin: 0;
+      padding: 0;
+      gap: 0;
       &__subtitle {
         font-size: 0.9em;
-        font-weight: 400;
       }
     }
 
@@ -43,9 +38,7 @@
       }
       &__list {
         margin-right: 5px;
-        font-size: 0.9em;
-        font-weight: 300;
-
+        font-size: 0.8em;
       }
 
       button {

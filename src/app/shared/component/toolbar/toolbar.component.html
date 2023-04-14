@@ -15,12 +15,8 @@
 <mat-toolbar class="menu" *ngIf="isMenuOpen" color="accent">
   <mat-toolbar-row>
     <app-theme-switcher></app-theme-switcher>
-    <mat-icon
-      aria-hidden="false"
-      fontIcon="settings_brightnesssettings_brightness"
-    ></mat-icon>
   </mat-toolbar-row>
   <mat-toolbar-row *ngFor="let link of links">
-    <span>{{link.route}}</span>
+    <span>{{ link.route }}</span>
   </mat-toolbar-row>
 </mat-toolbar>

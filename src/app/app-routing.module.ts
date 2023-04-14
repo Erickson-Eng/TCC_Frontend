@@ -7,6 +7,14 @@ const routes: Routes = [
     path: 'account',
     loadChildren: () => import('./page/account/account.module').then(m => m.AccountModule)
   },
+  {
+    path:'profile',
+    loadChildren: () => import('./page/profile/profile.module').then(m => m.ProfileModule)
+  },
+  {
+    path:'home',
+    loadChildren: () => import('./page/home/home.module').then(m => m.HomeModule)
+  }
 ];
 
 @NgModule({
