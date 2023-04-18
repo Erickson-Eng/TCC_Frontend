@@ -1,26 +1,19 @@
-<div class="card">
-  <img [src]="card.photoUrl" alt="Card Photo" class="card__photo" />
-  <div class="card__content">
-    <div class="card__content__body">
-      <h3 class="card__content__body__name">
-        {{ card.name }}
-      </h3>
-      <h4 class="card__content__body__subtitle">
-        {{ card.address }}
-      </h4>
-    </div>
+<mat-card class="example-card">
+  <img mat-card-image [src]="card.photoUrl" alt="Photo of a Shiba Inu" />
+  <mat-card-header>
+    <mat-card-title>{{ card.name }}</mat-card-title>
+    <mat-card-subtitle>{{ card.address }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-chip-listbox>
+      <mat-chip *ngFor="let sport of card.availableSports" class="practicable">
+        {{ sport }}
+      </mat-chip>
+    </mat-chip-listbox>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-raised-button color="primary">Reservar</button>
+  </mat-card-actions>
+</mat-card>
 
-    <div class="card__content__footer">
-      <ul>
-        <li
-          *ngFor="let sport of card.availableSports"
-          class="card__content__footer__list"
-        >
-          {{ sport }}
-        </li>
-      </ul>
-    </div>
 
-    <button mat-raised-button color="primary">Alugar</button>
-  </div>
-</div>
