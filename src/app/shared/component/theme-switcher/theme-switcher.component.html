@@ -1,6 +1,8 @@
 <mat-slide-toggle
-  (ngModelChange)="onChange($event)"
-  [(ngModel)]="isDarkThemeActive"
+(change)="onChange($event.checked)"
+[checked]="themeService.isDarkThemeActive"
 >
-  <mat-icon>{{ isDarkThemeActive ? "dark_mode": "light_mode" }}</mat-icon>
+<mat-icon>{{
+  themeService.isDarkThemeActive ? 'dark_mode' : 'light_mode'
+}}</mat-icon>
 </mat-slide-toggle>

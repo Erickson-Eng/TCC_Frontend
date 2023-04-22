@@ -1,19 +1,14 @@
-<mat-card class="example-card">
-  <img mat-card-image [src]="card.photoUrl" alt="Photo of a Shiba Inu" />
-  <mat-card-header>
-    <mat-card-title>{{ card.name }}</mat-card-title>
-    <mat-card-subtitle>{{ card.address }}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <mat-chip-listbox>
-      <mat-chip *ngFor="let sport of card.availableSports" class="practicable">
-        {{ sport }}
-      </mat-chip>
-    </mat-chip-listbox>
-  </mat-card-content>
-  <mat-card-actions align="end">
-    <button mat-raised-button color="primary">Reservar</button>
-  </mat-card-actions>
-</mat-card>
-
-
+<div class="card">
+  <img [src]="card.photoUrl" alt="Imagem do Ginásio" class="card-img-left">
+  <div class="card-body">
+    <h5 class="headline-5 card-title">Tipo de Ginásio</h5>
+    <h3 class="headline-3 card-subtitle mb-2">{{card.name}}</h3>
+    <p class="body-2 card-text">Rua antonio cirilo gomes, 254</p>
+    <p class="body-1 card-desc">{{card.description}}</p>
+    <ul class="card-list">
+      <li>Futebol</li>
+      <li>Basquete</li>
+      <li>Vôlei</li>
+    </ul>
+  </div>
+</div>
