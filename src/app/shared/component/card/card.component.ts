@@ -13,10 +13,12 @@ export class CardComponent {
   constructor() {
     this.card = {
       photoUrl: '../../../../assets/images/raul_cordula.jpeg',
-      name: 'Escola Raul Cordula',
-      description: ' Descrição do esporte com mais espaço para ser exibida no card, permitindo que o usuário tenha uma visão melhor do que se trata o esporte e assim      possa decidir se quer alugá-lo ou não',
-      availableSports: ['Basquete', 'Futebol', 'Futebol-Americano', 'Volei', 'Outros'],
-      address: 'Rua Antonio Cirilo Gomes, 254. Campina Grande - PB'
+      subtitleBotton: 'Rua Antonio Cirilo Gomes, 254. Campina Grande - PB',
+      subtitleTop: 'Publico',
+      title: 'Escola Raul Cordula',
+      contentBody: 'Descrição do esporte com mais espaço para ser exibida no card, permitindo que o usuário tenha uma visão melhor do que se trata o esporte e assim possa decidir se quer alugá-lo ou não',
+      itemList: ['Basquete', 'Futebol', 'Futebol-Americano', 'Volei']
+
     }
   }
 

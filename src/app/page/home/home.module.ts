@@ -15,7 +15,7 @@ import { ComponentModule } from 'src/app/shared/component/component.module';
     CommonModule,
     HomeRoutingModule,
     AppMaterialModule,
-    ComponentModule
+    ComponentModule,
   ]
 })
 export class HomeModule { }

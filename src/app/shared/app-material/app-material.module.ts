@@ -15,7 +15,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   exports: [
@@ -36,7 +37,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatSnackBarModule,
     MatListModule,
     MatSlideToggleModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSelectModule,
   ],
 })
 export class AppMaterialModule {}

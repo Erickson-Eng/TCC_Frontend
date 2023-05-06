@@ -7,19 +7,26 @@ import { LoginAccountComponent } from './login-account/login-account.component';
 import { RecoveryAccountComponent } from './recovery-account/recovery-account.component';
 import { AppMaterialModule } from 'src/app/shared/app-material/app-material.module';
 import { ComponentModule } from 'src/app/shared/component/component.module';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AccountService } from './account.service';
 
 @NgModule({
   declarations: [
     CreateAccountComponent,
     LoginAccountComponent,
-    RecoveryAccountComponent
+    RecoveryAccountComponent,
   ],
   imports: [
     CommonModule,
     AccountRoutingModule,
     AppMaterialModule,
-    ComponentModule
+    ComponentModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
+  providers:[
+    AccountService
   ]
 })
-export class AccountModule { }
+export class AccountModule {}

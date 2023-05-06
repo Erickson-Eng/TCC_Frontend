@@ -1,14 +1,15 @@
 <div class="card">
   <img [src]="card.photoUrl" alt="Imagem do Ginásio" class="card-img-left">
   <div class="card-body">
-    <h5 class="headline-5 card-title">Tipo de Ginásio</h5>
-    <h3 class="headline-3 card-subtitle mb-2">{{card.name}}</h3>
-    <p class="body-2 card-text">Rua antonio cirilo gomes, 254</p>
-    <p class="body-1 card-desc">{{card.description}}</p>
+    <h5 class="headline-5 card-title">{{card.subtitleTop}}</h5>
+    <h3 class="headline-3 card-subtitle mb-2">{{card.title}}</h3>
+    <p class="body-2 card-text">{{card.subtitleBotton}}</p>
+    <p class="body-1 card-desc">{{card.contentBody}}</p>
+
     <ul class="card-list">
-      <li>Futebol</li>
-      <li>Basquete</li>
-      <li>Vôlei</li>
+      <li *ngFor="let item of card.itemList">
+        {{item}}
+      </li>
     </ul>
   </div>
 </div>

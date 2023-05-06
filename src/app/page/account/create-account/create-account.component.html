@@ -10,70 +10,151 @@
         <mat-divider></mat-divider>
       </div>
     </div>
-    <form action="" class="card__form">
-      <mat-form-field appearance="outline" class="input__field">
-        <mat-label>Username</mat-label>
-        <input matInput placeholder="insert you username" required />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="input__field">
-        <mat-label>Enter your email</mat-label>
-        <input matInput placeholder="pat@example.com" required />
-        <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="input__field">
-        <mat-label>Password</mat-label>
-        <input
-          matInput
-          [type]="hidePassword ? 'password' : 'text'"
-          placeholder="insert you password"
-          required
-        />
+    <div class="card__form">
+      <mat-tab-group
+        class="tab__group"
+        #tabGroup
+        (selectedTabChange)="tabChanged($event)"
+      >
+        <mat-tab label="Usuário">
+          <form [formGroup]="userForm" novalidate class="form__group">
+            <mat-form-field class="form__group__input" appearance="outline">
+              <input
+                matInput
+                formControlName="username"
+                placeholder="Nome de usuário"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field class="form__group__input" appearance="outline">
+              <input
+                matInput
+                formControlName="email"
+                placeholder="Endereço de e-mail"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field class="form__group__input" appearance="outline">
+              <input
+                matInput
+                formControlName="password"
+                type="password"
+                placeholder="Senha"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field class="form__group__input" appearance="outline">
+              <mat-label>Tipo de conta</mat-label>
+              <mat-select formControlName="profileType">
+                <mat-option
+                  *ngFor="let option of optionsAccount"
+                  [value]="option.value"
+                  >{{ option.label }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </form>
+        </mat-tab>
+        <mat-tab label="Perfil" [disabled]="!isUserFormValid()">
+          <div [formGroup]="userForm">
+            <form formGroupName="profile" novalidate class="form__group">
+              <mat-form-field class="form__group__input" appearance="outline">
+                <input
+                  matInput
+                  formControlName="firstName"
+                  placeholder="Informe seu primeiro nome"
+                />
+              </mat-form-field>
+              <mat-form-field class="form__group__input" appearance="outline">
+                <input
+                  matInput
+                  formControlName="lastName"
+                  placeholder="Informe seu primeiro sobrenome"
+                />
+              </mat-form-field>
+              <mat-form-field class="form__group__input" appearance="outline">
+                <input
+                  matInput
+                  formControlName="socialName"
+                  placeholder="Nos informe um nome social se desejar"
+                />
+              </mat-form-field>
+              <mat-form-field class="form__group__input" appearance="outline">
+                <input
+                  matInput
+                  formControlName="cpf"
+                  placeholder="Insira o CPF"
+                />
+              </mat-form-field>
+              <mat-form-field class="form__group__input" appearance="outline">
+                <input
+                  matInput
+                  formControlName="birthDate"
+                  placeholder="Data de nascimento"
+                />
+              </mat-form-field>
+            </form>
+          </div>
+        </mat-tab>
+        <mat-tab label="Endereço" [disabled]="!isProfileFormValid()">
+          <div [formGroup]="userForm">
+            <div formGroupName="profile">
+              <form formGroupName="locale" novalidate class="form__group">
+                <mat-form-field class="form__group__input" appearance="outline">
+                  <input matInput formControlName="street" placeholder="Rua" />
+                </mat-form-field>
+                <mat-form-field class="form__group__input" appearance="outline">
+                  <input
+                    matInput
+                    formControlName="number"
+                    placeholder="Número"
+                  />
+                </mat-form-field>
+                <mat-form-field class="form__group__input" appearance="outline">
+                  <input matInput formControlName="city" placeholder="Cidade" />
+                </mat-form-field>
+                <mat-form-field class="form__group__input" appearance="outline">
+                  <input
+                    matInput
+                    formControlName="state"
+                    placeholder="Estado"
+                  />
+                </mat-form-field>
+                <mat-form-field class="form__group__input" appearance="outline">
+                  <input
+                    matInput
+                    formControlName="zipCode"
+                    placeholder="Código postal/Cep"
+                  />
+                </mat-form-field>
+              </form>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+      <div class="actions">
         <button
-          type="button"
-          mat-icon-button
-          matSuffix
-          (click)="hidePassword = !hidePassword"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hidePassword"
+          mat-button
+          (click)="previousTab()"
+          [disabled]="selectedTabIndex === 0"
         >
-          <mat-icon>{{
-            hidePassword ? "visibility_off" : "visibility"
-          }}</mat-icon>
+          Voltar
         </button>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="input__field">
-        <mat-label>Password</mat-label>
-        <input
-          matInput
-          [type]="hideConfirmPassword ? 'password' : 'text'"
-          placeholder="insert you password"
-          required
-        />
         <button
-          type="button"
-          mat-icon-button
-          matSuffix
-          (click)="hideConfirmPassword = !hideConfirmPassword"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hideConfirmPassword"
+          mat-button
+          (click)="nextTab()"
+          [disabled]="!tabIsValid()"
+          *ngIf="!validForm(); else botaoSalvar"
         >
-          <mat-icon>{{
-            hideConfirmPassword ? "visibility_off" : "visibility"
-          }}</mat-icon>
+          Próximo
         </button>
-      </mat-form-field>
-      <section>
-        <mat-checkbox class="input__checkbox" color="primary"
-          >Declaro que li e aceito todos os termos de uso do
-          serviço.</mat-checkbox
-        >
-      </section>
-      <button type="submit" mat-raised-button color="primary">
-        Create Account
-      </button>
-    </form>
+        <ng-template #botaoSalvar>
+          <button mat-button color="primary" [disabled]="!userForm.valid"
+          (click)="submitForm()">
+            Criar
+          </button>
+        </ng-template>
+      </div>
+    </div>
   </div>
 </div>

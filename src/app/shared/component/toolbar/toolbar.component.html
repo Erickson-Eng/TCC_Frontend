@@ -1,22 +1,27 @@
 <mat-toolbar class="toolbar" color="primary">
-  <button mat-icon-button aria-label="" (click)="toggleMenu()">
-    <mat-icon>menu</mat-icon>
-  </button>
+  <div class="toolbar__content">
+    <button mat-icon-button aria-label="" (click)="toggleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
 
-  <a routerLink="/home" class="logo">
-    <img src="../../../../assets/images/logo_160px.svg" alt="Logo" />
-  </a>
+    <a routerLink="/home" class="logo">
+      <img src="../../../../assets/images/logo_160px.svg" alt="Logo" />
+    </a>
 
-  <button mat-icon-button aria-label="">
-    <mat-icon>account_circle</mat-icon>
-  </button>
+    <div class="login">
+      <app-theme-switcher></app-theme-switcher>
+      <button mat-icon-button aria-label="" class="profile-pic">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </div>
+  </div>
 </mat-toolbar>
 
-<mat-toolbar class="menu" *ngIf="isMenuOpen" color="accent">
-  <mat-toolbar-row>
-    <app-theme-switcher></app-theme-switcher>
-  </mat-toolbar-row>
-  <mat-toolbar-row *ngFor="let link of links">
-    <span>{{ link.route }}</span>
-  </mat-toolbar-row>
-</mat-toolbar>
+<div class="toolbar">
+  <mat-toolbar class="menu" *ngIf="isMenuOpen" color="accent">
+    <mat-toolbar-row> </mat-toolbar-row>
+    <mat-toolbar-row class="menu__item" *ngFor="let link of links">
+      <span>{{ link.route }}</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
