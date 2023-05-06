@@ -8,10 +8,11 @@ import { environment } from 'src/environments/enviroment.dev';
 })
 export class AccountService {
   env = environment;
+
+
   constructor(private http: HttpClient) {}
 
   createAccount(user: User) {
-    console.log(user);
-    return this.http.post('http://localhost:8888.com/api/v1/user', user);
+    return this.http.post(`http://localhost:8888/api/v1/user`, user);
   }
 }

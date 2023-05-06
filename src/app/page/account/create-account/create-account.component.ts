@@ -116,7 +116,10 @@ export class CreateAccountComponent {
   }
 
   submitForm(): void {
+<<<<<<< HEAD
     console.log(this.userForm);
+=======
+>>>>>>> 16c1d96a151e1d7f11f19dc81de16a78fb5fd575
     let user = this.mapUserFormToUser();
     this.accountService.createAccount(user);
   }
