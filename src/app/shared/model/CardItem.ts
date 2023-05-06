@@ -1,9 +1,9 @@
-export interface CardItem {
-  
+export interface CardItem{
   photoUrl: string;
-  name: string;
-  description: string;
-  availableSports: string[];
-  address: string;
+  title: string;
+  subtitleTop?: string;
+  subtitleBotton?: string;
+  contentBody: string;
+  itemList?: string[];
 }
 
