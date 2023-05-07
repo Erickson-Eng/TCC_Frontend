@@ -1,11 +1,16 @@
-<div class="image__card">
-  <input type="file" id="image" placeholder="none" class="image__card__input" />
+<div class="image__card" *ngIf="!selectedImage">
+  <input type="file" id="image" placeholder="none" class="image__card__input" (change)="handleImageUpload($event)" />
   <label for="image">
     <mat-icon
       class="upload__image"
       aria-hidden="true"
       aria-label="upload file icon"
-      fontIcon="upload">
+      fontIcon="upload"
+    >
     </mat-icon>
   </label>
+</div>
+
+<div *ngIf="selectedImage">
+  <img [src]="selectedImage" [alt]="selectedImageName" class="uploaded-image"/>
 </div>

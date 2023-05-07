@@ -18,8 +18,4 @@ export class AccountService {
   createAccount(user: User): Observable<Message>{
     return this.http.post<Message>(this.API, user);
   }
-
-  getHelloWorld(){
-    return this.http.get<string>(this.API);
-  }
 }

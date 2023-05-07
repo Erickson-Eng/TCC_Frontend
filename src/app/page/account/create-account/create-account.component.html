@@ -4,11 +4,6 @@
       <a routerLink="/account">
         <img src="../../../../assets/images/Logo_300px.svg" alt="logo" />
       </a>
-
-      <div class="card__logo_route">
-        <h1 class="divisor__horizontal">Create account</h1>
-        <mat-divider></mat-divider>
-      </div>
     </div>
     <div class="card__form">
       <mat-tab-group
@@ -17,6 +12,10 @@
         (selectedTabChange)="tabChanged($event)"
       >
         <mat-tab label="Usuário">
+          <div class="header_form">
+            <h1>Informações da conta</h1>
+            <mat-divider></mat-divider>
+          </div>
           <form [formGroup]="userForm" novalidate class="form__group">
             <mat-form-field class="form__group__input" appearance="outline">
               <input
@@ -84,6 +83,10 @@
           </form>
         </mat-tab>
         <mat-tab label="Perfil" [disabled]="!isUserFormValid()">
+          <div class="header_form">
+            <h1>Informações pessoais</h1>
+            <mat-divider></mat-divider>
+          </div>
           <div [formGroup]="userForm">
             <form formGroupName="profile" novalidate class="form__group">
               <mat-form-field class="form__group__input" appearance="outline">
@@ -145,6 +148,10 @@
           </div>
         </mat-tab>
         <mat-tab label="Endereço" [disabled]="!isProfileFormValid()">
+          <div class="header_form">
+            <h1>Endereço pessoal</h1>
+            <mat-divider></mat-divider>
+          </div>
           <div [formGroup]="userForm">
             <div formGroupName="profile">
               <form formGroupName="locale" novalidate class="form__group">

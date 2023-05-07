@@ -31,15 +31,20 @@
 
     .tab__group{
       width: 100%;
-      gap: 2em;
+      padding: 30px;
 
+      .header_form{
+        padding: 20px 0;
+      }
       .form__group{
         width: 100%;
         display: flex;
         align-items: center;
         flex-direction: column;
+        padding: 20px 0;
 
-        &__input{
+        &__input {
+          min-width: 300px;
           width: 60%;
         }
       }
@@ -49,6 +54,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
+      button{
+        min-width: 100px;
+      }
     }
 
   }

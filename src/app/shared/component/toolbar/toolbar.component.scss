@@ -2,6 +2,8 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  position: relative;
+
   &__content{
     width: 100%;
     max-width: 1280px;
@@ -26,9 +28,10 @@
 
   .menu {
     position: absolute;
+    top: 100%;
+    left: 0;
     width: 100%;
-    max-width: 1280px;
-    padding: 10px;
+    z-index: 10;
   }
 
   .logo {
@@ -37,7 +40,6 @@
     height: 48px;
   }
 }
-
 
 @media only screen and (max-width: 767px) {
   .profile-pic {

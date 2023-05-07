@@ -7,6 +7,7 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { AppMaterialModule } from '../app-material/app-material.module';
 import { ThemeSwitcherComponent } from './theme-switcher/theme-switcher.component';
 import { FormsModule } from '@angular/forms';
+import { CardV2Component } from './card-v2/card-v2.component';
 
 @NgModule({
   exports: [
@@ -14,12 +15,14 @@ import { FormsModule } from '@angular/forms';
     CardComponent,
     ImageUploadComponent,
     ThemeSwitcherComponent,
+    CardV2Component
   ],
   declarations: [
     ToolbarComponent,
     CardComponent,
     ImageUploadComponent,
     ThemeSwitcherComponent,
+    CardV2Component,
   ],
   imports: [CommonModule, RouterModule, AppMaterialModule, FormsModule],
 })

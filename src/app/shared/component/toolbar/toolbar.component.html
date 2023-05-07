@@ -9,7 +9,6 @@
     </a>
 
     <div class="login">
-      <app-theme-switcher></app-theme-switcher>
       <button mat-icon-button aria-label="" class="profile-pic">
         <mat-icon>account_circle</mat-icon>
       </button>
@@ -19,6 +18,7 @@
 
 <div class="toolbar">
   <mat-toolbar class="menu" *ngIf="isMenuOpen" color="accent">
+    <app-theme-switcher></app-theme-switcher>
     <mat-toolbar-row> </mat-toolbar-row>
     <mat-toolbar-row class="menu__item" *ngFor="let link of links">
       <span>{{ link.route }}</span>

@@ -11,6 +11,10 @@
         <mat-divider></mat-divider>
       </div>
       <form [formGroup]="communityForm" class="form__group">
+        <app-image-upload
+          (imageSelected)="onImageSelected($event)"
+        ></app-image-upload>
+
         <mat-form-field appearance="outline" class="form__group__input">
           <mat-label>Nome</mat-label>
           <input
@@ -19,7 +23,6 @@
             formControlName="name"
           />
         </mat-form-field>
-
         <div
           class="mensagem__erro"
           *ngIf="
@@ -46,7 +49,7 @@
             communityForm.get('description')?.touched
           "
         >
-          Forneça uma descrição do que sua comunidade quer fazer
+          A descrição é um campo obrigatorio
         </div>
         <mat-form-field appearance="outline" class="form__group__input">
           <mat-label>Regras</mat-label>
@@ -61,7 +64,8 @@
         <button
           mat-raised-button
           color="primary"
-          [disabled]="!communityForm.valid"
+          [disabled]="!isCommunityFormValid()"
+          (click)="submitForm()"
         >
           Criar
         </button>
