@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="card">
+    <div class="card__header">
+      <a routerLink="/home">
+        <img src="../../../../assets/images/Logo_300px.svg" alt="" />
+      </a>
+    </div>
+    <div class="card__body">
+      <div class="tab__info">
+        <h2>Criação de comunidade</h2>
+        <mat-divider></mat-divider>
+      </div>
+      <form [formGroup]="communityForm" class="form__group">
+        <mat-form-field appearance="outline" class="form__group__input">
+          <mat-label>Nome</mat-label>
+          <input
+            matInput
+            placeholder="insira nome da comunidade"
+            formControlName="name"
+          />
+        </mat-form-field>
+
+        <div
+          class="mensagem__erro"
+          *ngIf="
+            communityForm.get('name')?.errors &&
+            communityForm.get('name')?.touched
+          "
+        >
+          O campo nome é obrigatorio
+        </div>
+
+        <mat-form-field appearance="outline" class="form__group__input">
+          <mat-label>Descrição</mat-label>
+          <input
+            matInput
+            placeholder="insira uma descrição curta"
+            formControlName="description"
+          />
+        </mat-form-field>
+
+        <div
+          class="mensagem__erro"
+          *ngIf="
+            communityForm.get('description')?.errors &&
+            communityForm.get('description')?.touched
+          "
+        >
+          Forneça uma descrição do que sua comunidade quer fazer
+        </div>
+        <mat-form-field appearance="outline" class="form__group__input">
+          <mat-label>Regras</mat-label>
+          <input
+            matInput
+            placeholder="insira as regras da comunidade"
+            formControlName="communityRules"
+          />
+        </mat-form-field>
+      </form>
+      <div class="actions">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!communityForm.valid"
+        >
+          Criar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

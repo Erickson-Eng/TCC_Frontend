@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 import { AccountService } from '../account.service';
 import { User } from 'src/app/shared/model/User';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ErrorResponse } from 'src/app/shared/model/ErrorResponse';
 
 @Component({
   selector: 'app-create-account',
@@ -27,7 +30,6 @@ export class CreateAccountComponent {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       socialName: [''],
-      birthDate: [''],
       cpf: [''],
       locale: this.fb.group({
         street: ['', Validators.required],
@@ -41,8 +43,14 @@ export class CreateAccountComponent {
 
   constructor(
     private fb: FormBuilder,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private router: Router,
+    private _snakeBar: MatSnackBar
   ) {}
+
+  openSnackBar(message: string, action: string) {
+    this._snakeBar.open(message, action);
+  }
 
   tabChanged(tabChangeEvent: MatTabChangeEvent): void {
     this.selectedTabIndex = tabChangeEvent.index;
@@ -116,12 +124,17 @@ export class CreateAccountComponent {
   }
 
   submitForm(): void {
-<<<<<<< HEAD
-    console.log(this.userForm);
-=======
->>>>>>> 16c1d96a151e1d7f11f19dc81de16a78fb5fd575
     let user = this.mapUserFormToUser();
-    this.accountService.createAccount(user);
+    console.log(user);
+    this.accountService.createAccount(user).subscribe(
+      (data) => {
+        this.openSnackBar(data.content, 'OK');
+        this.router.navigate(['/account']);
+      },
+      (error: ErrorResponse) => {
+        console.log(error);
+      }
+    );
   }
 
   mapUserFormToUser(): User {
@@ -135,7 +148,6 @@ export class CreateAccountComponent {
         firstName: formValues.profile.firstName,
         lastName: formValues.profile.lastName,
         socialName: formValues.profile.socialName,
-        birthDate: formValues.profile.birthDate,
         cpf: formValues.profile.cpf,
         locale: {
           street: formValues.profile.locale.street,

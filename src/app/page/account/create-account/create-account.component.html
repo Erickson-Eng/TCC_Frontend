@@ -26,6 +26,15 @@
                 required
               />
             </mat-form-field>
+            <div
+              class="mensagem__erro"
+              *ngIf="
+                userForm.get('username')?.errors &&
+                userForm.get('username')?.touched
+              "
+            >
+              O username é um campo obrigatorio
+            </div>
             <mat-form-field class="form__group__input" appearance="outline">
               <input
                 matInput
@@ -34,6 +43,15 @@
                 required
               />
             </mat-form-field>
+            <div
+              class="mensagem__erro"
+              *ngIf="
+                userForm.get('email')?.errors && userForm.get('email')?.touched
+              "
+            >
+              O email é um campo obrigatorio
+            </div>
+
             <mat-form-field class="form__group__input" appearance="outline">
               <input
                 matInput
@@ -43,6 +61,16 @@
                 required
               />
             </mat-form-field>
+            <div
+              class="mensagem__erro"
+              *ngIf="
+                userForm.get('password')?.errors &&
+                userForm.get('password')?.touched
+              "
+            >
+              A senha é um campo obrigatorio.
+            </div>
+
             <mat-form-field class="form__group__input" appearance="outline">
               <mat-label>Tipo de conta</mat-label>
               <mat-select formControlName="profileType">
@@ -63,8 +91,16 @@
                   matInput
                   formControlName="firstName"
                   placeholder="Informe seu primeiro nome"
-                />
-              </mat-form-field>
+              /></mat-form-field>
+              <div
+                class="mensagem__erro"
+                *ngIf="
+                  userForm.get('profile.firstName')?.errors &&
+                  userForm.get('profile.firstName')?.touched
+                "
+              >
+                O nome é um campo obrigatorio
+              </div>
               <mat-form-field class="form__group__input" appearance="outline">
                 <input
                   matInput
@@ -72,6 +108,15 @@
                   placeholder="Informe seu primeiro sobrenome"
                 />
               </mat-form-field>
+              <div
+                class="mensagem__erro"
+                *ngIf="
+                  userForm.get('profile.lastName')?.errors &&
+                  userForm.get('profile.lastName')?.touched
+                "
+              >
+                O sobrenome é um campo obrigatorio
+              </div>
               <mat-form-field class="form__group__input" appearance="outline">
                 <input
                   matInput
@@ -84,15 +129,18 @@
                   matInput
                   formControlName="cpf"
                   placeholder="Insira o CPF"
+                  required
                 />
               </mat-form-field>
-              <mat-form-field class="form__group__input" appearance="outline">
-                <input
-                  matInput
-                  formControlName="birthDate"
-                  placeholder="Data de nascimento"
-                />
-              </mat-form-field>
+              <div
+                class="mensagem__erro"
+                *ngIf="
+                  userForm.get('profile.cpf')?.errors &&
+                  userForm.get('profile.cpf')?.touched
+                "
+              >
+                O sobrenome é um campo obrigatorio
+              </div>
             </form>
           </div>
         </mat-tab>
@@ -103,6 +151,15 @@
                 <mat-form-field class="form__group__input" appearance="outline">
                   <input matInput formControlName="street" placeholder="Rua" />
                 </mat-form-field>
+                <div
+                  class="mensagem__erro"
+                  *ngIf="
+                    userForm.get('profile.locale.street')?.errors &&
+                    userForm.get('profile.locale.street')?.touched
+                  "
+                >
+                  A rua é um campo obrigatorio
+                </div>
                 <mat-form-field class="form__group__input" appearance="outline">
                   <input
                     matInput
@@ -110,9 +167,27 @@
                     placeholder="Número"
                   />
                 </mat-form-field>
+                <div
+                  class="mensagem__erro"
+                  *ngIf="
+                    userForm.get('profile.locale.number')?.errors &&
+                    userForm.get('profile.locale.number')?.touched
+                  "
+                >
+                  É necessário fornecer o número da residencia.
+                </div>
                 <mat-form-field class="form__group__input" appearance="outline">
                   <input matInput formControlName="city" placeholder="Cidade" />
                 </mat-form-field>
+                <div
+                  class="mensagem__erro"
+                  *ngIf="
+                    userForm.get('profile.locale.city')?.errors &&
+                    userForm.get('profile.locale.city')?.touched
+                  "
+                >
+                  É necessário fornecer a cidade da residencia.
+                </div>
                 <mat-form-field class="form__group__input" appearance="outline">
                   <input
                     matInput
@@ -120,6 +195,15 @@
                     placeholder="Estado"
                   />
                 </mat-form-field>
+                <div
+                  class="mensagem__erro"
+                  *ngIf="
+                    userForm.get('profile.locale.state')?.errors &&
+                    userForm.get('profile.locale.state')?.touched
+                  "
+                >
+                  É necessário fornecer o Estado da residencia.
+                </div>
                 <mat-form-field class="form__group__input" appearance="outline">
                   <input
                     matInput
@@ -127,6 +211,15 @@
                     placeholder="Código postal/Cep"
                   />
                 </mat-form-field>
+                <div
+                  class="mensagem__erro"
+                  *ngIf="
+                    userForm.get('profile.locale.zipCode')?.errors &&
+                    userForm.get('profile.locale.zipCode')?.touched
+                  "
+                >
+                  É necessário fornecer a cep da residencia.
+                </div>
               </form>
             </div>
           </div>
@@ -149,8 +242,12 @@
           Próximo
         </button>
         <ng-template #botaoSalvar>
-          <button mat-button color="primary" [disabled]="!userForm.valid"
-          (click)="submitForm()">
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="!userForm.valid"
+            (click)="submitForm()"
+          >
             Criar
           </button>
         </ng-template>

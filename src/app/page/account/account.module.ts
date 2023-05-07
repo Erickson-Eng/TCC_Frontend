@@ -25,8 +25,6 @@ import { AccountService } from './account.service';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers:[
-    AccountService
-  ]
+  providers: [AccountService],
 })
 export class AccountModule {}
