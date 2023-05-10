@@ -133,7 +133,7 @@ export class CreateAccountComponent {
       },
       (error: ErrorResponse) => {
         console.log(error);
-      }
+      },
     );
   }
 

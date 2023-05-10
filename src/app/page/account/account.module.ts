@@ -10,6 +10,7 @@ import { ComponentModule } from 'src/app/shared/component/component.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountService } from './account.service';
+import { KeycloakAngularModule } from 'keycloak-angular';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AccountService } from './account.service';
     ComponentModule,
     ReactiveFormsModule,
     HttpClientModule,
+    KeycloakAngularModule
   ],
   providers: [AccountService],
 })

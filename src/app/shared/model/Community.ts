@@ -1,6 +1,8 @@
 export interface Community {
-  _id?: number;
+  id?: number;
   name: string;
   description: string;
-  communityRules: string;
+  communityRules?: string;
+  imageId?: number;
+  imageSrc?: string;
 }

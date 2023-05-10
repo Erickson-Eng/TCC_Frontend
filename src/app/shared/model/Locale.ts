@@ -1,5 +1,6 @@
 
 export interface Locale {
+  id?: number;
   street: string;
   number: string;
   city: string;
