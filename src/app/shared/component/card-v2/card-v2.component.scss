@@ -1,18 +1,12 @@
 .example-card {
+  max-width: 450px;
+  max-height: 300px;
   mat-card-content {
-    white-space: pre-line; // Permite quebras de linha automáticas
-    overflow: hidden; // Oculta o texto excedente
-    text-overflow: ellipsis; // Adiciona reticências ao texto oculto
-
-    // Limita o número máximo de linhas a serem exibidas
-    display: -webkit-box;
-    -webkit-line-clamp: 4; // Ajuste o valor para o número de linhas desejado
-    -webkit-box-orient: vertical;
-    max-height: calc(1.2em * 4); // Ajuste a altura de acordo com o número de linhas e tamanho de fonte
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
-
-
 
 .card-list li {
   display: inline-block;

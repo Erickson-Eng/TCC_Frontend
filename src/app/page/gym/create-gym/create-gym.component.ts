@@ -1,6 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
+import { GymService } from '../gym.service';
+import { Gym } from 'src/app/shared/model/Gym';
+import { Locale } from 'src/app/shared/model/Locale';
+import { switchMap, tap } from 'rxjs';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-gym',
@@ -12,7 +18,12 @@ export class CreateGymComponent implements OnInit {
   gymForm!: FormGroup;
   selectedTabIndex = 0;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private service: GymService,
+    private router: Router,
+    private _snakeBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.gymForm = this.formBuilder.group({
@@ -31,7 +42,46 @@ export class CreateGymComponent implements OnInit {
       }),
     });
   }
-  submitForm(): void {}
+
+  openSnackBar(message: string, action: string) {
+    this._snakeBar.open(message, action);
+  }
+
+  submitForm() {
+    let gym = this.mapFormBuilderToGym();
+    this.service
+      .createLocale(gym.locale)
+      .pipe(
+        tap((createdLocale: Locale) => {
+          gym.localeId = createdLocale.id;
+          console.log(createdLocale);
+        }),
+        switchMap(() => this.service.createGym(gym))
+      )
+      .subscribe();
+      this.openSnackBar("Ginásio criado com sucesso", 'OK');
+      this.router.navigate(['/gym/list']);
+  }
+
+  mapFormBuilderToGym(): Gym {
+    const values = this.gymForm.value;
+    const gym: Gym = {
+      name: values.name,
+      shortDescription: values.shortDescription,
+      locale: {
+        street: values.locale.street,
+        number: values.locale.number,
+        city: values.locale.city,
+        state: values.locale.state,
+        zipCode: values.locale.zipCode,
+      },
+    };
+    if (values.rules) {
+      gym.rules = values.rules;
+    }
+
+    return gym;
+  }
 
   tabChanged(tabChangeEvent: MatTabChangeEvent): void {
     this.selectedTabIndex = tabChangeEvent.index;

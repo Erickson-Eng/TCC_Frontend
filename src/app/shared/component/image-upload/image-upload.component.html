@@ -1,5 +1,5 @@
-<div class="image__card" *ngIf="!selectedImage">
-  <input type="file" id="image" placeholder="none" class="image__card__input" (change)="handleImageUpload($event)" />
+<div class="image__card" *ngIf="!imageUrl">
+  <input type="file" id="image" placeholder="none" class="image__card__input" (change)="onFileSelected($event)" />
   <label for="image">
     <mat-icon
       class="upload__image"
@@ -11,6 +11,6 @@
   </label>
 </div>
 
-<div *ngIf="selectedImage">
-  <img [src]="selectedImage" [alt]="selectedImageName" class="uploaded-image"/>
+<div *ngIf="imageUrl">
+  <img [src]="imageUrl" class="uploaded-image" alt="Imagem da comunidade"/>
 </div>

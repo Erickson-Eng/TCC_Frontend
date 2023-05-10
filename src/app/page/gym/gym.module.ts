@@ -7,9 +7,11 @@ import { AppMaterialModule } from 'src/app/shared/app-material/app-material.modu
 import { ComponentModule } from 'src/app/shared/component/component.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ListGymComponent } from './list-gym/list-gym.component';
+import { GymService } from './gym.service';
 
 @NgModule({
-  declarations: [CreateGymComponent],
+  declarations: [CreateGymComponent, ListGymComponent],
   imports: [
     CommonModule,
     GymRoutingModule,
@@ -18,5 +20,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
   ],
+  providers: [GymService],
 })
 export class GymModule {}

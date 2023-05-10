@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Community } from 'src/app/shared/model/Community';
 import { CommunityService } from '../community.service';
+import { switchMap, tap } from 'rxjs';
+import { Image } from 'src/app/shared/model/Image';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-community',
@@ -10,22 +14,21 @@ import { CommunityService } from '../community.service';
 })
 export class CreateCommunityComponent implements OnInit {
   communityForm!: FormGroup;
+  selectedImage: File | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
-    private service: CommunityService
+    private service: CommunityService,
+    private router: Router,
+    private _snakeBar: MatSnackBar
   ) {}
 
-  onImageSelected(file: File) {
-    console.log(file);
+    openSnackBar(message: string, action: string) {
+    this._snakeBar.open(message, action);
   }
 
-  handleImageUploaded(event: { image: string; imageName: string }): void {
-    const selectedImage = event.image;
-    const selectedImageName = event.imageName;
-
-    console.log(selectedImage);
-    console.log(selectedImageName);
+  onImageSelected(image: File) {
+    this.selectedImage = image;
   }
 
   ngOnInit(): void {
@@ -46,10 +49,18 @@ export class CreateCommunityComponent implements OnInit {
 
   submitForm() {
     let community = this.mapFormToCommunity();
-    this.service.createCommunity(community).subscribe((data) => {
-      console.log(data);
-    });
-    console.log(community);
+    this.service
+      .uploadFile(this.selectedImage!)
+      .pipe(
+        tap((createdImage: Image) => {
+          community.imageId = createdImage.id;
+        }),
+        switchMap(() => this.service.createCommunity(community))
+      )
+      .subscribe(() =>{
+        this.openSnackBar('Comunidade criada com sucesso', 'OK');
+        this.router.navigate(['/community/list']);
+      });
   }
 
   mapFormToCommunity(): Community {
