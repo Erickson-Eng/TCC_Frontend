@@ -7,13 +7,15 @@ import { ComponentModule } from './shared/component/component.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
 import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
+import { environment } from '../environments/environment';
 
 
 export function initializeKeycloak(keycloak: KeycloakService) {
+
   return () =>
   keycloak.init({
     config: {
-    url: 'http://localhost:8080',
+    url: `${environment.apiUrl}`,
     realm: 'quattys',
     clientId: 'sportive'
     },
