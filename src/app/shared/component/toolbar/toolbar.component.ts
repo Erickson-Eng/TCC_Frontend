@@ -9,7 +9,10 @@ import { Link } from '../../model/Link';
 export class ToolbarComponent {
 
   @Input() links: Link[] = [
-    {name: '', route:''}
+    {name: 'Home', route:'/home'},
+    {name: 'Criar ginásio', route:'/'},
+    {name: 'Criar Comunidade', route:'/'},
+    {name: 'Listar Comunidades', route:'/community/list'}
   ];
 
   isMenuOpen = false;

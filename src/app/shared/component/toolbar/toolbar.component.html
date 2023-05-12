@@ -5,11 +5,16 @@
     </button>
 
     <a routerLink="/home" class="logo">
-      <img src="../../../../assets/images/logo_160px.svg" alt="Logo" />
+      <img src="../../../../assets/images/logo_150px_branca.svg" alt="Logo" />
     </a>
 
     <div class="login">
-      <button mat-icon-button aria-label="" class="profile-pic">
+      <button
+        mat-icon-button
+        aria-label=""
+        routerLink="/profile/athlete"
+        class="profile-pic"
+      >
         <mat-icon>account_circle</mat-icon>
       </button>
     </div>
@@ -21,8 +26,35 @@
     <mat-toolbar-row>
       <app-theme-switcher></app-theme-switcher>
     </mat-toolbar-row>
-    <mat-toolbar-row class="menu__item" *ngFor="let link of links">
-      <span>{{ link.route }}</span>
+    <mat-toolbar-row>
+      <a mat-button routerLink="/home"> Home </a>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+      <ul>
+        <li><a mat-button routerLink="/gym/create"> Criar ginásio </a></li>
+        <li>
+          <a mat-button disabled routerLink="/gym/create"> Editar ginásio </a>
+        </li>
+        <li><a mat-button routerLink="/gym/list"> Listar ginásios </a></li>
+      </ul>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="mat-toolbar-spacer"></mat-toolbar-row>
+    <mat-toolbar-row>
+      <ul>
+        <li>
+          <a mat-button routerLink="/community/create"> Criar comunidade </a>
+        </li>
+        <li>
+          <a mat-button routerLink="/community/list"> Procurar comunidade </a>
+        </li>
+        <li>
+          <a mat-button disabled routerLink="/community/list">
+            Minhas comunidades
+          </a>
+        </li>
+      </ul>
     </mat-toolbar-row>
   </mat-toolbar>
 </div>
+
+

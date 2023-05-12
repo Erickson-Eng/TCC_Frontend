@@ -1,4 +1,4 @@
 export interface Link {
   name: String;
-  route: String;
+  route: String | undefined;
 }

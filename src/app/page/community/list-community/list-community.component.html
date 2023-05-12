@@ -1,5 +1,9 @@
 <app-toolbar></app-toolbar>
 
-<ng-template ngFor let-card [ngForOf]="cardItemList">
-  <app-card-v2 [card]="card"></app-card-v2>
-</ng-template>
+<div class="container">
+  <div class="card-container">
+    <ng-template ngFor let-card [ngForOf]="cardItemList">
+      <app-card-v2 [card]="card" class="card"></app-card-v2>
+    </ng-template>
+  </div>
+</div>

@@ -7,6 +7,7 @@ import { ThemeSwitcherService } from './theme-switcher.service';
   styleUrls: ['./theme-switcher.component.scss'],
 })
 export class ThemeSwitcherComponent {
+
   isDarkThemeActive =  false;
 
   constructor(public themeService:ThemeSwitcherService) {}
