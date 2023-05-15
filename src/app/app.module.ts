@@ -8,47 +8,46 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
 import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 import { environment } from '../environments/environment';
-
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { InterceptorModule } from './interceptor/interceptor.module';
 
 export function initializeKeycloak(keycloak: KeycloakService) {
-
   return () =>
-  keycloak.init({
-    config: {
-    url: `${environment.apiUrl}`,
-    realm: 'quattys',
-    clientId: 'sportive'
-    },
-  initOptions: {
-  onLoad: 'login-required',
-  silentCheckSsoRedirectUri:
-    window.location.origin + '/assets/silent-check-sso.html'
-  }
-  });
+    keycloak.init({
+      config: {
+        url: `${environment.apiUrl}`,
+        realm: 'quattys',
+        clientId: 'sportive',
+      },
+      initOptions: {
+        onLoad: 'login-required',
+        silentCheckSsoRedirectUri:
+          window.location.origin + '/assets/silent-check-sso.html',
+      },
+    });
 }
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return sessionStorage.getItem('access_token');
+        },
+        headerName: 'Authorization',
+        authScheme: 'Bearer ',
+      },
+    }),
     BrowserModule,
     AppRoutingModule,
     ComponentModule,
     BrowserAnimationsModule,
     AppMaterialModule,
-    KeycloakAngularModule
+    KeycloakAngularModule,
+    InterceptorModule,
   ],
-  providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeKeycloak,
-      multi: true,
-      deps: [KeycloakService],
-    }
-  ],
-  bootstrap: [AppComponent]
+  providers: [JwtHelperService],
+  bootstrap: [AppComponent],
 })
-
-
-export class AppModule { }
+export class AppModule {}

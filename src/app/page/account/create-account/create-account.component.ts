@@ -129,7 +129,7 @@ export class CreateAccountComponent {
     this.accountService.createAccount(user).subscribe(
       (data) => {
         this.openSnackBar(data.content, 'OK');
-        this.router.navigate(['/account']);
+        this.router.navigate(['/account/auth']);
       },
       (error: ErrorResponse) => {
         console.log(error);

@@ -8,10 +8,15 @@
         <app-theme-switcher></app-theme-switcher>
       </div>
     </div>
-    <form action="" class="container__card__form">
+    <form [formGroup]="loginForm" class="container__card__form">
       <mat-form-field appearance="outline" class="input__field">
         <mat-label>Username</mat-label>
-        <input matInput placeholder="insert you username" />
+        <input
+          matInput
+          formControlName="username"
+          placeholder="insert you username"
+          required
+        />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="input__field">
@@ -20,6 +25,8 @@
           matInput
           [type]="hide ? 'password' : 'text'"
           placeholder="insert you password"
+          formControlName="password"
+          required
         />
         <button
           type="button"
@@ -33,7 +40,15 @@
         </button>
       </mat-form-field>
 
-      <button type="submit" mat-raised-button color="primary">Login</button>
+      <button
+        type="submit"
+        [disabled]="!loginForm.valid"
+        mat-raised-button
+        color="primary"
+        (click)="submitForm()"
+      >
+        Login
+      </button>
     </form>
     <div class="container__card__link">
       <button mat-button routerLink="/account/create" type="button">
