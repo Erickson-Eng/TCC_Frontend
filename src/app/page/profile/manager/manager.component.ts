@@ -1,37 +1,62 @@
 import { Component, OnInit } from '@angular/core';
+import { Manager } from 'src/app/shared/model/Manager';
+import { ProfileService } from '../profile.service';
+import { AuthService } from 'src/app/auth.service';
 import { CardItem } from 'src/app/shared/model/CardItem';
 import { Gym } from 'src/app/shared/model/Gym';
-import { GymService } from '../gym.service';
-import { GymTableResponse } from 'src/app/shared/model/GymTableResponse';
 import { Router } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
-  selector: 'app-list-gym',
-  templateUrl: './list-gym.component.html',
-  styleUrls: ['./list-gym.component.scss'],
+  selector: 'app-manager',
+  templateUrl: './manager.component.html',
+  styleUrls: ['./manager.component.scss'],
 })
-export class ListGymComponent implements OnInit {
-  gridCols: number = 3;
+export class ManagerComponent implements OnInit {
+  manager: Manager = {
+    id: 0,
+    firstName: '',
+    lastName: '',
+    locale: {
+      street: '',
+      number: '',
+      city: '',
+      state: '',
+      zipCode: '',
+    },
+  };
   cardList: CardItem[] = [];
-  gymList: Gym[] = [];
 
-  ngOnInit(): void {
-    this.getGridCols();
-    this.service.getAllGym()
-    .subscribe((data: GymTableResponse) => {
-      this.gymList = data.gymList;
-      this.cardList = this.mapGymToCardItemList(this.gymList);
-    });
-  }
+  manager_email = '';
+  manager_username = '';
+  gridCols: number = 3;
 
   constructor(
-    private service: GymService,
+    private profileService: ProfileService,
+    private authService: AuthService,
     private router: Router,
     private breakpointObserver: BreakpointObserver
   ) {}
 
-  mapGymToCardItemList(gymList: Gym[]): CardItem[] {
+  ngOnInit(): void {
+    this.getGridCols();
+    this.manager_email = this.authService.getEmail();
+    this.manager_username = this.authService.getUsername();
+    this.profileService
+      .getManagerProfile(this.manager_email)
+      .subscribe((data) => {
+        this.manager = data;
+        this.cardList = this.mapGymToCardItemList(data.gyms);
+      });
+
+  }
+
+
+  mapGymToCardItemList(gymList: Gym[] | undefined): CardItem[] {
+    if (gymList === undefined) {
+      return [];
+    }
+
     return gymList.map((gym) => {
       const item: CardItem = {
         id: gym.id,
@@ -52,6 +77,8 @@ export class ListGymComponent implements OnInit {
       return item;
     });
   }
+
+
 
   redirectToCardDetails(id: number | undefined): void {
     this.router.navigate(['/gym/profile/', id]);

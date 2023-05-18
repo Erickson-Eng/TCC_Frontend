@@ -1,37 +1,43 @@
-.toolbar{
+.toolbar {
   width: 100%;
   display: flex;
   justify-content: center;
   position: relative;
 
-  &__content{
+  &__content {
     width: 100%;
     max-width: 1280px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 0 auto; // Adiciona margem automática para centralizar horizontalmente
 
-    .login{
+    .login {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-
-      .profile-pic {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
+      gap: 5px;
     }
   }
 
   .menu {
+    max-width: 1280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    top: 100%;
-    left: 0;
     width: 100%;
     z-index: 10;
+    margin-bottom: 40px; // Adiciona margem inferior para evitar o deslocamento do conteúdo abaixo
+
+    .mat-toolbar-row {
+      height: 40px;
+      display: none; // Esconde por padrão todas as linhas da toolbar
+    }
+
+    .mat-toolbar-row.has-access {
+      display: flex; // Exibe as linhas que possuem acesso
+    }
   }
 
   .logo {
@@ -42,12 +48,7 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .profile-pic {
-    height: 30px;
-    width: 30px;
-  }
-
-  .login{
-    gap: 0px;
+  .login {
+    gap: 20px;
   }
 }

@@ -9,52 +9,30 @@
     </a>
 
     <div class="login">
-      <button
-        mat-icon-button
-        aria-label=""
-        routerLink="/profile/athlete"
-        class="profile-pic"
-      >
-        <mat-icon>account_circle</mat-icon>
-      </button>
+      <app-theme-switcher></app-theme-switcher>
+      <ng-template *ngIf="hasAccess('ATHLETE'); else admin">
+        <button mat-icon-button routerLink="/profile/athlete">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+      </ng-template>
+      <ng-template #admin>
+        <button mat-icon-button routerLink="/profile/manager">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+      </ng-template>
     </div>
   </div>
 </mat-toolbar>
 
 <div class="toolbar">
   <mat-toolbar class="menu" *ngIf="isMenuOpen" color="accent">
-    <mat-toolbar-row>
-      <app-theme-switcher></app-theme-switcher>
-    </mat-toolbar-row>
-    <mat-toolbar-row>
-      <a mat-button routerLink="/home"> Home </a>
-    </mat-toolbar-row>
-    <mat-toolbar-row>
-      <ul>
-        <li><a mat-button routerLink="/gym/create"> Criar ginásio </a></li>
-        <li>
-          <a mat-button disabled routerLink="/gym/create"> Editar ginásio </a>
-        </li>
-        <li><a mat-button routerLink="/gym/list"> Listar ginásios </a></li>
-      </ul>
-    </mat-toolbar-row>
-    <mat-toolbar-row class="mat-toolbar-spacer"></mat-toolbar-row>
-    <mat-toolbar-row>
-      <ul>
-        <li>
-          <a mat-button routerLink="/community/create"> Criar comunidade </a>
-        </li>
-        <li>
-          <a mat-button routerLink="/community/list"> Procurar comunidade </a>
-        </li>
-        <li>
-          <a mat-button disabled routerLink="/community/list">
-            Minhas comunidades
-          </a>
-        </li>
-      </ul>
+    <mat-toolbar-row
+      *ngFor="let linha of linhas"
+      [ngClass]="{ 'has-access': hasAccess(linha.role) }"
+    >
+      <a mat-button [routerLink]="linha.routerLink" [disabled]="linha.disabled">
+        {{ linha.texto }}
+      </a>
     </mat-toolbar-row>
   </mat-toolbar>
 </div>
-
-

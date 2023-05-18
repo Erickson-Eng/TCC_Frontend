@@ -9,7 +9,7 @@
 
 .profile {
   text-align: center;
-  width: 500px; /* Ajuste a largura conforme necessário */
+  width: 1280px; /* Ajuste a largura conforme necessário */
 }
 
 .profile-info {
@@ -47,6 +47,10 @@
   margin: 0 5px;
 }
 
-.profile-tabs {
-  margin-top: 20px;
+.manager-tabs {
+  padding: 30px;
+  .header{
+    width: 100%;
+    padding: 20px;
+  }
 }

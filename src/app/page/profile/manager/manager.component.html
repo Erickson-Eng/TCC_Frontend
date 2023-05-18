@@ -1,0 +1,35 @@
+<header class="fixed-toolbar">
+  <app-toolbar></app-toolbar>
+</header>
+
+<div class="container">
+  <div class="profile">
+    <div class="profile-info">
+      <img
+        class="profile-picture"
+        src="../../../../assets/images/3d_avatar_21.png"
+        alt="Profile Picture"
+      />
+      <h2 class="fullname">{{ manager.firstName }} {{ manager.lastName }}</h2>
+      <p class="username">@{{manager_username}}</p>
+
+      <div class="stats">
+        <button mat-stroked-button color="primary">Editar perfil</button>
+      </div>
+    </div>
+
+
+    <div class="manager-tabs">
+      <div class="header">
+        <h2>Ginásios</h2>
+        <mat-divider></mat-divider>
+      </div>
+    <mat-grid-list [cols]="gridCols" gutterSize="10px" rowHeight="225px">
+      <mat-grid-tile
+      *ngFor="let card of cardList">
+      <app-card-v2 [card]="card" (click)="redirectToCardDetails(card.id)"></app-card-v2>
+      </mat-grid-tile>
+    </mat-grid-list>
+    </div>
+  </div>
+</div>

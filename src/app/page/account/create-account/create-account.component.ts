@@ -125,15 +125,11 @@ export class CreateAccountComponent {
 
   submitForm(): void {
     let user = this.mapUserFormToUser();
-    console.log(user);
     this.accountService.createAccount(user).subscribe(
       (data) => {
         this.openSnackBar(data.content, 'OK');
         this.router.navigate(['/account/auth']);
-      },
-      (error: ErrorResponse) => {
-        console.log(error);
-      },
+      }
     );
   }
 

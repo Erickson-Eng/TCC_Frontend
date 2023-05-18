@@ -9,9 +9,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ListGymComponent } from './list-gym/list-gym.component';
 import { GymService } from './gym.service';
+import { ProfileGymComponent } from './profile-gym/profile-gym.component';
 
 @NgModule({
-  declarations: [CreateGymComponent, ListGymComponent],
+  declarations: [CreateGymComponent, ListGymComponent, ProfileGymComponent],
   imports: [
     CommonModule,
     GymRoutingModule,

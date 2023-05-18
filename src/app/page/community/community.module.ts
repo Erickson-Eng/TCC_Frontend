@@ -9,9 +9,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ListCommunityComponent } from './list-community/list-community.component';
 import { CommunityService } from './community.service';
+import { ProfileCommunityComponent } from './profile-community/profile-community.component';
 
 @NgModule({
-  declarations: [CreateCommunityComponent, ListCommunityComponent],
+  declarations: [CreateCommunityComponent, ListCommunityComponent, ProfileCommunityComponent,],
   imports: [
     CommonModule,
     CommunityRoutingModule,

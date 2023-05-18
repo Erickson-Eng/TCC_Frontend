@@ -2,10 +2,13 @@ import { Locale } from './Locale';
 import { Sport } from './Sport';
 
 export interface Gym {
+  id?: number;
   name: string;
   shortDescription: string;
   locale: Locale;
-  sportPracticable?: Sport[];
   rules?: string;
   localeId?: number;
+  sportPracticable?: number[];
+  sports?: Sport[];
+  managerId?: number;
 }

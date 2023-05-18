@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 import { GymService } from '../gym.service';
 import { Gym } from 'src/app/shared/model/Gym';
@@ -7,6 +7,12 @@ import { Locale } from 'src/app/shared/model/Locale';
 import { switchMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Sport } from 'src/app/shared/model/Sport';
+
+
+interface SportsData {
+  sportList: Sport[];
+}
 
 @Component({
   selector: 'app-create-gym',
@@ -17,6 +23,9 @@ export class CreateGymComponent implements OnInit {
   @ViewChild('tabGroup') tabGroup!: MatTabGroup;
   gymForm!: FormGroup;
   selectedTabIndex = 0;
+  sports: Sport[] = [];
+  selectedSportIds: number[] = [];
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,10 +38,11 @@ export class CreateGymComponent implements OnInit {
     this.gymForm = this.formBuilder.group({
       name: [
         '',
-        Validators.compose([Validators.required, Validators.minLength(5)]),
+        Validators.compose([Validators.required, Validators.minLength(3)]),
       ],
       shortDescription: ['', [Validators.required]],
       rules: [''],
+      sportPracticable: [this.selectedSportIds],
       locale: this.formBuilder.group({
         street: ['', Validators.required],
         number: ['', Validators.required],
@@ -41,6 +51,9 @@ export class CreateGymComponent implements OnInit {
         zipCode: ['', Validators.required],
       }),
     });
+    this.service.getSports().subscribe((data: SportsData) => {
+      this.sports = data.sportList;
+    })
   }
 
   openSnackBar(message: string, action: string) {
@@ -54,20 +67,24 @@ export class CreateGymComponent implements OnInit {
       .pipe(
         tap((createdLocale: Locale) => {
           gym.localeId = createdLocale.id;
-          console.log(createdLocale);
         }),
         switchMap(() => this.service.createGym(gym))
       )
-      .subscribe();
-      this.openSnackBar("Ginásio criado com sucesso", 'OK');
-      this.router.navigate(['/gym/list']);
+      .subscribe(() => {
+        this.openSnackBar("Ginásio criado com sucesso", 'OK');
+        this.router.navigate(['/gym/list']);
+      });
+
   }
 
   mapFormBuilderToGym(): Gym {
+
     const values = this.gymForm.value;
     const gym: Gym = {
+      id: 0,
       name: values.name,
       shortDescription: values.shortDescription,
+      sportPracticable: values.sportPracticable,
       locale: {
         street: values.locale.street,
         number: values.locale.number,
@@ -109,6 +126,19 @@ export class CreateGymComponent implements OnInit {
       default:
         return false;
     }
+  }
+
+  toggleSelecao(opcao: Sport): void {
+    const index = this.selectedSportIds.indexOf(opcao.id);
+    if (index >= 0) {
+      this.selectedSportIds.splice(index, 1);
+    } else {
+      this.selectedSportIds.push(opcao.id);
+    }
+  }
+
+  isSelecionado(opcao: Sport): boolean {
+    return this.selectedSportIds.includes(opcao.id);
   }
 
   validForm() {

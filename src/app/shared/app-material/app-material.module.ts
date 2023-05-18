@@ -43,6 +43,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSelectModule,
     MatTooltipModule,
     MatMenuModule,
+    MatChipsModule,
   ],
 })
 export class AppMaterialModule {}

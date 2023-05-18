@@ -1,9 +1,10 @@
+<app-toolbar></app-toolbar>
+
 <div class="container">
   <div class="card">
-    <div class="card__header">
-      <a routerLink="/home">
-        <img src="../../../../assets/images/Logo_300px.svg" alt="" />
-      </a>
+    <div class="tab__info">
+      <h2>Informações do ginásio</h2>
+      <mat-divider></mat-divider>
     </div>
     <div class="card__body">
       <mat-tab-group
@@ -12,12 +13,8 @@
         (selectedTabChange)="tabChanged($event)"
       >
         <mat-tab label="Gym">
-          <div class="tab__info">
-            <h2>Informações do ginásio</h2>
-            <mat-divider></mat-divider>
-          </div>
           <form [formGroup]="gymForm" class="form__group" novalidate>
-            <app-image-upload></app-image-upload>
+            <app-image-upload class="picture"></app-image-upload>
             <mat-form-field appearance="outline" class="form__group__input">
               <mat-label>Nome</mat-label>
               <input
@@ -42,6 +39,16 @@
                 formControlName="rules"
               />
             </mat-form-field>
+            <div class="chips">
+              <h3>Esportes Praticaveis</h3>
+              <mat-divider></mat-divider>
+              <mat-chip-listbox multiple>
+                <mat-chip-option color="accent" *ngFor="let opcao of sports" [ngClass]="{ 'selecionado': isSelecionado(opcao) }" (click)="toggleSelecao(opcao)">
+                  {{ opcao.name }}
+                </mat-chip-option>
+              </mat-chip-listbox>
+            </div>
+
           </form>
         </mat-tab>
         <mat-tab
@@ -94,7 +101,6 @@
             </form>
           </div>
         </mat-tab>
-        <mat-tab label="Picture" class="tab__group" disabled></mat-tab>
       </mat-tab-group>
       <div class="actions">
         <button

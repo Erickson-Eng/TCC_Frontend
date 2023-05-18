@@ -1,36 +1,16 @@
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  height: calc(100vh - 64px); /* Subtrai a altura da toolbar */
-  margin-top: 64px; /* Ajuste o valor conforme necessário */
   max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 20px;
-  box-sizing: border-box;
-}
+  height: 100vh;
+  margin: 0 auto;
+  padding: 30px;
 
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start; /* Alterado para flex-start */
-  align-items: flex-start;
-  margin-top: 20px; /* Ajuste o valor conforme necessário */
+  .search_itens{
+    text-align: center;
+    max-width: 1280px;
 
-  .card {
-    width: calc(33.33% - 10px); /* Ajuste o tamanho dos cards conforme necessário */
-    margin-bottom: 20px;
-    margin-right: 10px;
-    &:nth-child(3n + 3) {
-      margin-right: auto; /* Adicionado para posicionar o último item à esquerda */
-    }
-
-    @media only screen and (max-width: 767px) {
+    .header{
       width: 100%;
-      &:nth-child(3n + 3) {
-        margin-right: 0; /* Remove a margem para o último item em dispositivos móveis */
-      }
+      padding-bottom: 16px;
     }
   }
 }
