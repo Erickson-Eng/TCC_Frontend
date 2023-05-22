@@ -5,13 +5,13 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { RecoveryAccountComponent } from './recovery-account/recovery-account.component';
 
 const routes: Routes = [
-  {path: '', component:LoginAccountComponent},
-  {path:'create', component:CreateAccountComponent},
-  {path:'recovery', component:RecoveryAccountComponent}
+  { path: 'auth', component: LoginAccountComponent },
+  { path: 'create', component: CreateAccountComponent },
+  { path: 'recovery', component: RecoveryAccountComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AccountRoutingModule { }
+export class AccountRoutingModule {}

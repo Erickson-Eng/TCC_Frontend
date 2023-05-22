@@ -1,4 +1,5 @@
 export interface CardItem{
+  id?: number;
   photoUrl: string;
   title: string;
   subtitleTop?: string;

@@ -1,48 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
+import { AuthResponse } from 'src/app/shared/model/AuthResponse';
 import { Message } from 'src/app/shared/model/Message';
 import { User } from 'src/app/shared/model/User';
-import keycloak from 'src/config/keycloak-config';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
-  private readonly API = 'http://localhost:8888/api/v1/user';
+  private env = environment;
 
   constructor(private http: HttpClient) {}
 
-  init() {
-    return new Promise((resolve, reject) => {
-      keycloak
-        .init({ onLoad: 'login-required' })
-        .then((auth) => {
-          resolve(auth);
-        })
-        .catch((error) => {
-          reject(error);
-        });
-    });
-  }
-
-  login() {
-    keycloak.login();
-  }
-
-  logout() {
-    keycloak.logout();
-  }
-
-  isLoggedIn() {
-    return keycloak.authenticated;
-  }
-
-  getToken() {
-    return keycloak.token;
+  loginBackend(
+    usernameOrEmail: string,
+    password: string
+  ): Observable<AuthResponse> {
+    const login = { usernameOrEmail, password };
+    return this.http.post<AuthResponse>(`${this.env.apiUrl}/user/login`, login);
   }
 
   createAccount(user: User): Observable<Message> {
-    return this.http.post<Message>(this.API, user);
+    return this.http.post<Message>(`${this.env.apiUrl}/user`, user);
   }
 }

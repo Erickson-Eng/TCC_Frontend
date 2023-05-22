@@ -29,10 +29,8 @@ export class PersonalComponent {
 
   onFileSelected(file: File) {
     this.selectedFile = file;
-    console.log(this.selectedFile);
   }
 
   onSubmit() {
-    console.log(this.meuFormulario.value);
   }
 }

@@ -1,4 +1,19 @@
 <app-toolbar></app-toolbar>
-<ng-template ngFor let-card [ngForOf]="cardList">
-  <app-card-v2 [card]="card"></app-card-v2>
-</ng-template>
+
+<div class="container">
+  <div class="search"></div>
+  <div class="search_itens">
+    <div class="header">
+      <h2>Ginásios</h2>
+      <mat-divider></mat-divider>
+    </div>
+    <mat-grid-list [cols]="gridCols" gutterSize="10px" rowHeight="225px">
+      <mat-grid-tile *ngFor="let card of cardList">
+        <app-card-v2
+          [card]="card"
+          (click)="redirectToCardDetails(card.id)"
+        ></app-card-v2>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>

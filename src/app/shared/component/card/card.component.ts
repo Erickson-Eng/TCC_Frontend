@@ -12,6 +12,7 @@ export class CardComponent {
 
   constructor() {
     this.card = {
+      id: 0,
       photoUrl: '../../../../assets/images/raul_cordula.jpeg',
       subtitleBotton: 'Rua Antonio Cirilo Gomes, 254. Campina Grande - PB',
       subtitleTop: 'Publico',

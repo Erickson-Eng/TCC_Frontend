@@ -7,7 +7,8 @@ import { ThemeSwitcherService } from './theme-switcher.service';
   styleUrls: ['./theme-switcher.component.scss'],
 })
 export class ThemeSwitcherComponent {
-  isDarkThemeActive =  false;
+
+  isDarkThemeActive =  true;
 
   constructor(public themeService:ThemeSwitcherService) {}
 
@@ -17,5 +18,6 @@ export class ThemeSwitcherComponent {
 
   ngOnInit(){
     this.isDarkThemeActive = this.themeService.isDarkThemeActive;
+    this.themeService.toggleTheme(this.isDarkThemeActive);
   }
 }

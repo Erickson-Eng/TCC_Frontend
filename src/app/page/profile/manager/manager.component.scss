@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  margin-top: 64px;
+  padding-top: 30px;/* Ajuste o valor conforme necessário */
+}
+
+.profile {
+  text-align: center;
+  width: 1280px; /* Ajuste a largura conforme necessário */
+}
+
+.profile-info {
+  margin-bottom: 20px;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  background-color: black;
+}
+
+.fullname {
+  font-size: 24px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.username {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: 100;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.stats button {
+  margin: 0 5px;
+}
+
+.manager-tabs {
+  padding: 30px;
+  .header{
+    width: 100%;
+    padding: 20px;
+  }
+}

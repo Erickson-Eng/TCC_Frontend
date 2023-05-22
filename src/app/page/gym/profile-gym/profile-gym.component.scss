@@ -1,0 +1,47 @@
+.container{
+  max-width: 1280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 40px;
+  gap: 10px;
+
+  .header{
+    width: 100%;
+    max-width: 1020px;
+    padding-bottom: 16px;
+    h1{
+      font-weight: 800;
+    }
+  }
+  .body{
+    width: 100%;
+    max-width: 1020px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    &__picture{
+      padding-bottom: 24px;
+    }
+
+    &__content{
+      gap: 16px;
+      font-weight: 500;
+    }
+
+    .chips{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 16px;
+
+      &__header{
+        padding-bottom: 16px;
+      }
+    }
+  }
+}

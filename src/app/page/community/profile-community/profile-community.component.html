@@ -1,0 +1,42 @@
+<app-toolbar></app-toolbar>
+
+<div class="container">
+  <div class="profile">
+    <div class="profile-info">
+      <img
+        class="profile-picture"
+        [src]="community.imageSrc"
+        alt="Profile Picture"
+      />
+      <h2 class="fullname">{{ community.name }}</h2>
+      <p class="id">{{ community.description }}</p>
+      <p class="id">{{ community.communityRules }}</p>
+      <p class="id">ID: {{ community.id }}</p>
+      <p></p>
+    </div>
+    <div class="profile_actions">
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="canApply('ATHLETE')"
+        (click)="applyOnCommunity()"
+      >
+        Aplicar
+      </button>
+      <div class="profile_actions_configs">
+        <button mat-raised-button>
+          <mat-icon>settings</mat-icon>
+        </button>
+        <button mat-raised-button>
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="community-tabs">
+      <mat-tab-group>
+        <mat-tab label="Membros"> </mat-tab>
+        <mat-tab label="Agendamentos"></mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

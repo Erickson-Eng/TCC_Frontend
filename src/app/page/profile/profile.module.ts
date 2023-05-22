@@ -6,16 +6,22 @@ import { PersonalComponent } from './personal/personal.component';
 import { ComponentModule } from 'src/app/shared/component/component.module';
 import { AppMaterialModule } from 'src/app/shared/app-material/app-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AthleteComponent } from './athlete/athlete.component';
+import { ManagerComponent } from './manager/manager.component';
+import { ProfileService } from './profile.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [PersonalComponent],
+  declarations: [PersonalComponent, AthleteComponent, ManagerComponent],
   imports: [
     CommonModule,
     ProfileRoutingModule,
     ComponentModule,
     AppMaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
+  providers: [ProfileService]
 })
 export class ProfileModule {}

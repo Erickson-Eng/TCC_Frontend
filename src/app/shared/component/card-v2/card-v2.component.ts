@@ -12,6 +12,7 @@ export class CardV2Component {
 
   constructor(){
     this.card = {
+      id: 0,
       photoUrl: '../../../../assets/images/default-image.png',
       subtitleBotton: 'Subtitle Botton',
       subtitleTop: 'Subtile top',
