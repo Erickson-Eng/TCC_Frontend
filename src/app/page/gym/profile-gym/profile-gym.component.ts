@@ -28,7 +28,6 @@ export class ProfileGymComponent implements OnInit {
       this.id = +params['id'];
       this.service.getGymById(this.id).subscribe((data) => {
         this.gym = data;
-        console.log(this.gym);
       });
     });
   }

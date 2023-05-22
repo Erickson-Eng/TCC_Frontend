@@ -7,7 +7,7 @@ import { ProfileCommunityComponent } from './profile-community/profile-community
 const routes: Routes = [
   { path: 'create', component: CreateCommunityComponent },
   { path: 'list', component: ListCommunityComponent },
-  { path: 'profile', component: ProfileCommunityComponent },
+  { path: 'profile/:id', component: ProfileCommunityComponent },
 ];
 
 @NgModule({

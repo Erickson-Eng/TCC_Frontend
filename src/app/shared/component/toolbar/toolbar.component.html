@@ -10,11 +10,14 @@
 
     <div class="login">
       <app-theme-switcher></app-theme-switcher>
-      <ng-template *ngIf="hasAccess('ATHLETE'); else admin">
+      <ng-template *ngIf="hasAccess('ATHLETE'); then athlete; else admin"></ng-template>
+
+      <ng-template #athlete>
         <button mat-icon-button routerLink="/profile/athlete">
           <mat-icon>account_circle</mat-icon>
         </button>
       </ng-template>
+
       <ng-template #admin>
         <button mat-icon-button routerLink="/profile/manager">
           <mat-icon>account_circle</mat-icon>

@@ -1,31 +1,39 @@
 <app-toolbar></app-toolbar>
 
-<div class="header">
-  <h1>Ginásio</h1>
-</div>
-
 <div class="container">
-  <img src="../../../../assets/images/default-image.png" alt="" />
-  <h2>{{ gym.name }}</h2>
-  <mat-divider></mat-divider>
-  <p>
-    Local: {{ gym.locale.street }} - {{ gym.locale.number }} -
-    {{ gym.locale.city }} - {{ gym.locale.state }} - {{ gym.locale.zipCode }}
-  </p>
-  <mat-divider></mat-divider>
-  <p>Descrição Geral: {{ gym.shortDescription }}</p>
-  <mat-divider></mat-divider>
-  <p>Administrador:{{gym.managerId}}</p>
-
-  <div class="chips">
-    <h3>Esportes Praticaveis</h3>
+  <div class="header">
+    <h1>{{ gym.name }}</h1>
     <mat-divider></mat-divider>
-    <mat-chip-set>
-      <mat-chip color="primary" selected *ngFor="let opcao of gym.sports">
-        {{ opcao.name }}
-      </mat-chip>
-    </mat-chip-set>
   </div>
+  <div class="body">
+    <div class="body__picture">
+      <img src="../../../../assets/images/default-image.png" alt="" />
+    </div>
 
-  <button mat-raised-button color="primary">Solicitar Aluguel</button>
+    <div class="body__content">
+      <p>
+        Local: {{ gym.locale.street }} - {{ gym.locale.number }} -
+        {{ gym.locale.city }} - {{ gym.locale.state }} -
+        {{ gym.locale.zipCode }}
+      </p>
+      <p>Descrição Geral: {{ gym.shortDescription }}</p>
+      <p>Administrador:{{ gym.managerId }}</p>
+    </div>
+
+    <div class="chips">
+      <div class="chips__header">
+        <h3>Esportes Praticaveis</h3>
+        <mat-divider></mat-divider>
+      </div>
+
+      <mat-chip-set>
+        <mat-chip color="primary" selected *ngFor="let opcao of gym.sports">
+          {{ opcao.name }}
+        </mat-chip>
+      </mat-chip-set>
+    </div>
+    <div class="actions">
+      <button mat-raised-button color="primary" class="btn-aluguel">Solicitar Aluguel</button>
+    </div>
+  </div>
 </div>

@@ -10,9 +10,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ListCommunityComponent } from './list-community/list-community.component';
 import { CommunityService } from './community.service';
 import { ProfileCommunityComponent } from './profile-community/profile-community.component';
+import { ProfileService } from '../profile/profile.service';
 
 @NgModule({
-  declarations: [CreateCommunityComponent, ListCommunityComponent, ProfileCommunityComponent,],
+  declarations: [
+    CreateCommunityComponent,
+    ListCommunityComponent,
+    ProfileCommunityComponent,
+  ],
   imports: [
     CommonModule,
     CommunityRoutingModule,
@@ -21,6 +26,6 @@ import { ProfileCommunityComponent } from './profile-community/profile-community
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [CommunityService],
+  providers: [CommunityService, ProfileService],
 })
 export class CommunityModule {}
