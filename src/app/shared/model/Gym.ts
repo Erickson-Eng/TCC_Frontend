@@ -2,7 +2,7 @@ import { Locale } from './Locale';
 import { Sport } from './Sport';
 
 export interface Gym {
-  id?: number;
+  id: number;
   name: string;
   shortDescription: string;
   locale: Locale;
@@ -11,4 +11,6 @@ export interface Gym {
   sportPracticable?: number[];
   sports?: Sport[];
   managerId?: number;
+  imageId: number;
+  imageSrc?: string;
 }

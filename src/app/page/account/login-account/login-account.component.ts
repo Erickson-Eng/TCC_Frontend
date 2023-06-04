@@ -24,8 +24,8 @@ export class LoginAccountComponent implements OnInit {
   ngOnInit(): void {}
 
   loginForm: FormGroup = this.fb.group({
-    username: ['', [Validators.required]],
-    password: ['', [Validators.required]],
+    username: ['', [Validators.required, Validators.minLength(5)]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
   });
 
   submitForm(): void {
@@ -54,5 +54,13 @@ export class LoginAccountComponent implements OnInit {
         sessionStorage.setItem('scope', data.scope);
         this.router.navigate(['/home']);
       });
+  }
+
+  isUserFormValid(): boolean{
+    const controls = this.loginForm.controls;
+    return (
+      controls['username']?.valid &&
+      controls['password']?.valid
+    );
   }
 }

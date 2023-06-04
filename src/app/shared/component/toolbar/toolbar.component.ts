@@ -27,8 +27,7 @@ export class ToolbarComponent {
     { texto: 'Criar ginásio', routerLink: '/gym/create', role: 'MANAGER' },
     { texto: 'Listar ginásios', routerLink: '/gym/list', role: "default-roles-quattys"  },
     { texto: 'Criar comunidade', routerLink: '/community/create', role: 'ATHLETE' },
-    { texto: 'Procurar comunidade', routerLink: '/community/list', role: "ATHLETE"  },
-    { texto: 'Minhas comunidades', routerLink: '/community/list', disabled: true, role: 'ATHLETE' },
+    { texto: 'Procurar comunidade', routerLink: '/community/list', role: "ATHLETE"  }
   ];
 
   hasAccess(role: string): boolean {

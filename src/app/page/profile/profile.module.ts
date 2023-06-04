@@ -10,6 +10,8 @@ import { AthleteComponent } from './athlete/athlete.component';
 import { ManagerComponent } from './manager/manager.component';
 import { ProfileService } from './profile.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CommunityService } from '../community/community.service';
+import { GymService } from '../gym/gym.service';
 
 @NgModule({
   declarations: [PersonalComponent, AthleteComponent, ManagerComponent],
@@ -22,6 +24,6 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [ProfileService]
+  providers: [ProfileService, CommunityService, GymService],
 })
 export class ProfileModule {}

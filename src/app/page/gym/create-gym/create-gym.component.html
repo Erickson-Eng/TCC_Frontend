@@ -14,7 +14,10 @@
       >
         <mat-tab label="Gym">
           <form [formGroup]="gymForm" class="form__group" novalidate>
-            <app-image-upload class="picture"></app-image-upload>
+            <app-image-upload class="picture"
+            (imageSelected)="onImageSelected($event)"
+          ></app-image-upload>
+
             <mat-form-field appearance="outline" class="form__group__input">
               <mat-label>Nome</mat-label>
               <input
@@ -104,14 +107,14 @@
       </mat-tab-group>
       <div class="actions">
         <button
-          mat-button
+          mat-raised-button
           (click)="previousTab()"
           [disabled]="selectedTabIndex === 0"
         >
           Voltar
         </button>
         <button
-          mat-button
+          mat-raised-button
           (click)="nextTab()"
           [disabled]="!tabIsValid()"
           *ngIf="!validForm(); else botaoSalvar"

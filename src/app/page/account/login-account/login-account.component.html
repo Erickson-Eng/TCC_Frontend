@@ -4,7 +4,7 @@
       <img src="../../../../assets/images/Logo_300px.svg" alt="logo" />
 
       <div class="container__card__logo__status">
-        <h1 class="divisor-horizontal">Sign in</h1>
+        <h1 class="divisor-horizontal">Iniciar sessão</h1>
         <app-theme-switcher></app-theme-switcher>
       </div>
     </div>
@@ -42,7 +42,7 @@
 
       <button
         type="submit"
-        [disabled]="!loginForm.valid"
+        [disabled]="!isUserFormValid()"
         mat-raised-button
         color="primary"
         (click)="submitForm()"
@@ -52,10 +52,10 @@
     </form>
     <div class="container__card__link">
       <button mat-button routerLink="/account/create" type="button">
-        Create Account
+        Criar conta
       </button>
       <button mat-button routerLink="/account/recovery" type="button">
-        Recovery Account
+        Recuperar senha
       </button>
     </div>
   </div>

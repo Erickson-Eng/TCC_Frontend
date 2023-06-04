@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 import { AccountService } from '../account.service';
@@ -12,9 +12,11 @@ import { ErrorResponse } from 'src/app/shared/model/ErrorResponse';
   templateUrl: './create-account.component.html',
   styleUrls: ['./create-account.component.scss'],
 })
-export class CreateAccountComponent {
+export class CreateAccountComponent implements OnInit {
   @ViewChild('tabGroup') tabGroup!: MatTabGroup;
   isLoading = true;
+  private storageKey = 'isDarkThemeActive';
+  isDarkThemeActive = true;
   selectedTabIndex = 0;
   optionsAccount = [
     { value: 'Athlete', label: 'Atleta' },
@@ -47,6 +49,12 @@ export class CreateAccountComponent {
     private router: Router,
     private _snakeBar: MatSnackBar
   ) {}
+  ngOnInit(): void {
+    localStorage.setItem(
+      this.storageKey,
+      JSON.stringify(this.isDarkThemeActive)
+    );
+  }
 
   openSnackBar(message: string, action: string) {
     this._snakeBar.open(message, action);

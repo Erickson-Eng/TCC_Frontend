@@ -18,12 +18,12 @@
       <button
         mat-raised-button
         color="primary"
-        *ngIf="canApply('ATHLETE')"
+        *ngIf="canApply('ATHLETE') && !verifyIfExist(membership, username, 'APPROVED')"
         (click)="applyOnCommunity()"
       >
         Aplicar
       </button>
-      <div class="profile_actions_configs">
+      <div class="profile_actions_configs" *ngIf="verifyIfExist(membership, username, 'APPROVED')">
         <button mat-raised-button>
           <mat-icon>settings</mat-icon>
         </button>
@@ -34,8 +34,30 @@
     </div>
     <div class="community-tabs">
       <mat-tab-group>
-        <mat-tab label="Membros"> </mat-tab>
-        <mat-tab label="Agendamentos"></mat-tab>
+        <mat-tab label="Membros">
+          <div *ngFor="let member of membership" class="card-members">
+            <mat-card (click)="redirectToUserProfile(member.username)">
+              <mat-card-header>
+                <div class="card-header-content">
+                  <div class="image-container">
+                    <img
+                      alt="athlete image"
+                      mat-card-sm-image
+                      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                    />
+                  </div>
+                  <div class="text-container">
+                    <mat-card-title-group>
+                      <mat-card-title>{{ member.athleteName }}</mat-card-title>
+                      <mat-card-subtitle>{{member.communityProfile}}</mat-card-subtitle>
+                    </mat-card-title-group>
+                  </div>
+                </div>
+              </mat-card-header>
+            </mat-card>
+          </div>
+        </mat-tab>
+        <mat-tab label="Agendamentos" [disabled]="!verifyIfExist(membership, username, 'APPROVED')"></mat-tab>
       </mat-tab-group>
     </div>
   </div>

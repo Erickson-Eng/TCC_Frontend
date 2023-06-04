@@ -1,0 +1,66 @@
+<app-toolbar></app-toolbar>
+
+<div class="container">
+  <div class="container__header">
+    <h2>Realizar o agendamento</h2>
+    <mat-divider></mat-divider>
+  </div>
+  <form [formGroup]="scheduleForm" class="container__form">
+
+    <mat-form-field class="form__field" appearance="outline">
+      <mat-label>Favorite food</mat-label>
+      <mat-select  formControlName="communityId">
+        <mat-option *ngFor="let community of communities" [value]="community.id">
+          {{community.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form__field"appearance="outline">
+      <input
+        matInput
+        formControlName="text"
+        placeholder="Atividade praticada"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="form__field"appearance="outline">
+      <mat-label>Escolha uma data</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="DD/MM/YYYY"
+        formControlName="date"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="form__field"appearance="outline">
+      <mat-label>Horario de entrada</mat-label>
+      <input
+        matInput
+        [ngxMatTimepicker]="picker2"
+        formControlName="checkinBooking"
+        placeholder="Horario de entrada"
+      />
+      <ngx-mat-timepicker #picker2></ngx-mat-timepicker>
+    </mat-form-field>
+
+    <mat-form-field class="form__field"appearance="outline">
+      <mat-label>Horario de saída</mat-label>
+      <input
+        matInput
+        [ngxMatTimepicker]="picker3"
+        formControlName="checkoutBooking"
+        placeholder="Horario de saída"
+      />
+      <ngx-mat-timepicker #picker3></ngx-mat-timepicker>
+    </mat-form-field>
+  </form>
+  <div class="actions">
+    <button mat-raised-button color="primary" (click)="submitForm()"  class="btn-actions">
+      Solicitar registro
+    </button>
+  </div>
+</div>
