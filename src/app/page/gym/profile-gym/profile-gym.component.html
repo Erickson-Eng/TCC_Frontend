@@ -2,12 +2,18 @@
 
 <div class="container">
   <div class="header">
-    <h1>{{ gym.name }}</h1>
+    <div class="header_content">
+      <h1>{{ gym.name }}</h1>
+      <button mat-icon-button aria-label="" (click)="redirectToAppointments(gym.id)">
+        <mat-icon>calendar_month</mat-icon>
+      </button>
+    </div>
+
     <mat-divider></mat-divider>
   </div>
   <div class="body">
     <div class="body__picture">
-      <img src="../../../../assets/images/default-image.png" alt="" />
+      <img [src]="gym.imageSrc" alt="" class="profile-image" />
     </div>
 
     <div class="body__content">
@@ -33,7 +39,10 @@
       </mat-chip-set>
     </div>
     <div class="actions">
-      <button mat-raised-button color="primary" class="btn-aluguel">Solicitar Aluguel</button>
+      <button mat-raised-button color="primary" class="btn-aluguel"
+      (click)="redirectToSchedule(gym.id)" >
+        Solicitar Aluguel
+      </button>
     </div>
   </div>
 </div>

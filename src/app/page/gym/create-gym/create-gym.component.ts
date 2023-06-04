@@ -4,10 +4,14 @@ import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 import { GymService } from '../gym.service';
 import { Gym } from 'src/app/shared/model/Gym';
 import { Locale } from 'src/app/shared/model/Locale';
-import { switchMap, tap } from 'rxjs';
+import { concatMap, map, switchMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Sport } from 'src/app/shared/model/Sport';
+import { Image } from 'src/app/shared/model/Image';
+import { AuthService } from 'src/app/auth.service';
+import { ProfileService } from '../../profile/profile.service';
+import { Manager } from 'src/app/shared/model/Manager';
 
 
 interface SportsData {
@@ -25,16 +29,39 @@ export class CreateGymComponent implements OnInit {
   selectedTabIndex = 0;
   sports: Sport[] = [];
   selectedSportIds: number[] = [];
-
+  selectedImage: File | null = null;
+  admin_email = '';
+  manager: Manager = {
+    id: 0,
+    firstName: '',
+    lastName: '',
+    locale: {
+      street: '',
+      number: '',
+      city: '',
+      state: '',
+      zipCode: '',
+    },
+  };
 
   constructor(
     private formBuilder: FormBuilder,
     private service: GymService,
     private router: Router,
-    private _snakeBar: MatSnackBar
+    private _snakeBar: MatSnackBar,
+    private authService: AuthService,
+    private profileService: ProfileService
   ) {}
 
   ngOnInit(): void {
+    this.admin_email =this.authService.getEmail();
+
+    this.profileService
+      .getManagerProfile(this.admin_email)
+      .subscribe((data) => {
+        this.manager = data;
+      });
+
     this.gymForm = this.formBuilder.group({
       name: [
         '',
@@ -53,8 +80,13 @@ export class CreateGymComponent implements OnInit {
     });
     this.service.getSports().subscribe((data: SportsData) => {
       this.sports = data.sportList;
-    })
+    });
   }
+
+  onImageSelected(image: File) {
+    this.selectedImage = image;
+  }
+
 
   openSnackBar(message: string, action: string) {
     this._snakeBar.open(message, action);
@@ -62,23 +94,25 @@ export class CreateGymComponent implements OnInit {
 
   submitForm() {
     let gym = this.mapFormBuilderToGym();
+    console.log(gym);
     this.service
       .createLocale(gym.locale)
       .pipe(
-        tap((createdLocale: Locale) => {
-          gym.localeId = createdLocale.id;
+        tap((createdLocale: Locale) => { gym.localeId = createdLocale.id; }),
+        concatMap(() => this.service.uploadFile(this.selectedImage!)),
+        map((uploadImage: Image) => {
+          gym.imageId = uploadImage.id;
+          return uploadImage;
         }),
-        switchMap(() => this.service.createGym(gym))
+        concatMap(() => this.service.createGym(gym))
       )
       .subscribe(() => {
-        this.openSnackBar("Ginásio criado com sucesso", 'OK');
+        this.openSnackBar('Ginásio criado com sucesso', 'OK');
         this.router.navigate(['/gym/list']);
       });
-
   }
 
   mapFormBuilderToGym(): Gym {
-
     const values = this.gymForm.value;
     const gym: Gym = {
       id: 0,
@@ -92,10 +126,13 @@ export class CreateGymComponent implements OnInit {
         state: values.locale.state,
         zipCode: values.locale.zipCode,
       },
+      imageId: 0,
+      managerId: this.manager.id
     };
     if (values.rules) {
       gym.rules = values.rules;
     }
+
 
     return gym;
   }

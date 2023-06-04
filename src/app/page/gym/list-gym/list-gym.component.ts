@@ -48,6 +48,13 @@ export class ListGymComponent implements OnInit {
           return sport.name;
         });
       }
+      if(gym.imageId){
+        this.service.getGymImage(gym.imageId).subscribe(
+          (imageSrc: string) => {
+            item.photoUrl = imageSrc;
+          }
+        )
+      }
 
       return item;
     });

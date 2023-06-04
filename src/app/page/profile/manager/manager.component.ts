@@ -6,6 +6,7 @@ import { CardItem } from 'src/app/shared/model/CardItem';
 import { Gym } from 'src/app/shared/model/Gym';
 import { Router } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { GymService } from '../../gym/gym.service';
 
 @Component({
   selector: 'app-manager',
@@ -35,7 +36,8 @@ export class ManagerComponent implements OnInit {
     private profileService: ProfileService,
     private authService: AuthService,
     private router: Router,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    private gymService: GymService
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +50,6 @@ export class ManagerComponent implements OnInit {
         this.manager = data;
         this.cardList = this.mapGymToCardItemList(data.gyms);
       });
-
   }
 
 
@@ -72,6 +73,13 @@ export class ManagerComponent implements OnInit {
         item.itemList = gym.sports.map((sport) => {
           return sport.name;
         });
+      }
+      if(gym.imageId){
+        this.gymService.getGymImage(gym.imageId).subscribe(
+          (imageSrc: string) => {
+            item.photoUrl = imageSrc;
+          }
+        )
       }
 
       return item;
@@ -97,9 +105,9 @@ export class ManagerComponent implements OnInit {
         if (result.breakpoints[Breakpoints.XSmall]) {
           this.gridCols = 1; // 1 coluna em telas extra pequenas (ex.: celulares)
         } else if (result.breakpoints[Breakpoints.Small]) {
-          this.gridCols = 2; // 2 colunas em telas pequenas (ex.: tablets)
+          this.gridCols = 1; // 2 colunas em telas pequenas (ex.: tablets)
         } else if (result.breakpoints[Breakpoints.Medium]) {
-          this.gridCols = 3; // 3 colunas em telas médias
+          this.gridCols = 2; // 3 colunas em telas médias
         } else if (result.breakpoints[Breakpoints.Large]) {
           this.gridCols = 3; // 4 colunas em telas grandes
         } else if (result.breakpoints[Breakpoints.XLarge]) {

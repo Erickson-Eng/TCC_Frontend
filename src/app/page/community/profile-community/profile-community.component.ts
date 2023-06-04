@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Community } from 'src/app/shared/model/Community';
 import { CommunityService } from '../community.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { ProfileService } from '../../profile/profile.service';
 import { Membership } from 'src/app/shared/model/Membership';
@@ -22,6 +22,7 @@ export class ProfileCommunityComponent implements OnInit {
   cardItemList: CardItem[] | undefined;
   id!: number;
   gridCols: number = 3;
+  username = '';
 
   community: Community = {
     name: '',
@@ -33,20 +34,23 @@ export class ProfileCommunityComponent implements OnInit {
   constructor(
     private service: CommunityService,
     private route: ActivatedRoute,
+    private router: Router,
     private authService: AuthService,
     private profileService: ProfileService,
     private breakpointObserver: BreakpointObserver
   ) {}
 
   ngOnInit(): void {
+    this.username = this.authService.getUsername();
     this.getGridCols();
     this.route.params.subscribe((params) => {
       this.id = +params['id'];
       this.service.getCommunityById(this.id).subscribe((data) => {
         this.community = data;
         this.service
-          .getAllApplication(data.id!)
+          .getAllApplication(data.id!, 'APPROVED')
           .subscribe((application: MembershipList) => {
+            console.log(application);
             this.membership = application.membershipList;
             this.cardItemList = this.mapMembersToCard(application);
           });
@@ -114,5 +118,17 @@ export class ProfileCommunityComponent implements OnInit {
           this.gridCols = 3; // 5 colunas em telas extra grandes
         }
       });
+  }
+
+  verifyIfExist(members: Membership[], username: string, state: string) {
+    return members.some(
+      (member) =>
+        member['username'] === username
+        && member['applicationState'] === state
+    );
+  }
+
+  redirectToUserProfile(username: string | undefined): void {
+    this.router.navigate(['/profile/athlete/', username]);
   }
 }

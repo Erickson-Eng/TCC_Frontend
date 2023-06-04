@@ -10,9 +10,20 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ListGymComponent } from './list-gym/list-gym.component';
 import { GymService } from './gym.service';
 import { ProfileGymComponent } from './profile-gym/profile-gym.component';
+import { AgendaGymComponent } from './agenda-gym/agenda-gym.component';
+import { AgendamentoGymComponent } from './agendamento-gym/agendamento-gym.component';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
+import { ProfileService } from '../profile/profile.service';
+import { CommunityService } from '../community/community.service';
 
 @NgModule({
-  declarations: [CreateGymComponent, ListGymComponent, ProfileGymComponent],
+  declarations: [
+    CreateGymComponent,
+    ListGymComponent,
+    ProfileGymComponent,
+    AgendaGymComponent,
+    AgendamentoGymComponent,
+  ],
   imports: [
     CommonModule,
     GymRoutingModule,
@@ -20,7 +31,8 @@ import { ProfileGymComponent } from './profile-gym/profile-gym.component';
     ComponentModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxMatTimepickerModule
   ],
-  providers: [GymService],
+  providers: [GymService, ProfileService, CommunityService],
 })
 export class GymModule {}

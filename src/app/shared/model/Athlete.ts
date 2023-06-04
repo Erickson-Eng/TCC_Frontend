@@ -9,4 +9,5 @@ export interface Athlete {
   cpf: string;
   bodyMeasureList?: [];
   locale: Locale;
+  username: string;
 }

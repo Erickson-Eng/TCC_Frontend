@@ -12,7 +12,7 @@
       />
       <h2 class="fullname">{{ manager.firstName }} {{ manager.lastName }}</h2>
       <p class="username">@{{manager_username}}</p>
-
+      <p class="address">{{manager.locale.street}}, {{manager.locale.city}} - {{manager.locale.state}}</p>
       <div class="stats">
         <button mat-stroked-button color="primary">Editar perfil</button>
       </div>
@@ -24,7 +24,7 @@
         <h2>Ginásios</h2>
         <mat-divider></mat-divider>
       </div>
-    <mat-grid-list [cols]="gridCols" gutterSize="10px" rowHeight="225px">
+    <mat-grid-list [cols]="gridCols" gutterSize="10px" rowHeight="280px">
       <mat-grid-tile
       *ngFor="let card of cardList">
       <app-card-v2 [card]="card" (click)="redirectToCardDetails(card.id)"></app-card-v2>

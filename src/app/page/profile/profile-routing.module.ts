@@ -4,9 +4,10 @@ import { AthleteComponent } from './athlete/athlete.component';
 import { ManagerComponent } from './manager/manager.component';
 
 const routes: Routes = [
+  {path: 'athlete/:username?', component:AthleteComponent},
+  {path: 'manager/:username?', component: ManagerComponent},
   {path: 'athlete', component:AthleteComponent},
   {path: 'manager', component: ManagerComponent}
-
 ];
 
 @NgModule({

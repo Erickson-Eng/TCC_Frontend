@@ -66,9 +66,25 @@ export class CommunityService {
     return this.http.post<any>(`${this.API}/membership`, membershipRequest);
   }
 
-  getAllApplication(communityId: number): Observable<any> {
-    let params = new HttpParams().set('communityId', communityId);
+  getAllApplication(communityId?: number, status?: string, athleteId?:number): Observable<any> {
+    let params = new HttpParams();
+    if(communityId){
+      params = params.set('communityId', communityId);
+    }
+    if(status){
+      params = params.set('applicationState', status);;
+    }
+    if(athleteId){
+      params = params.set('athleteId', athleteId);
+    }
     return this.http.get<any>(`${this.API}/membership/filter`, {
+      params: params,
+    });
+  }
+
+  getAllMembers(communityId: number): Observable<any>{
+    let params = new HttpParams().set('communityId', communityId);
+    return this.http.get<any>(`${this.API}/membership/get-members-for-community`, {
       params: params,
     });
   }

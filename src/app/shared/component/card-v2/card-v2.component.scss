@@ -1,19 +1,23 @@
 .example-card {
   width: 350px; // Largura fixa para telas pequenas
-  height: 215px; // Altura fixa para telas pequenas
+  height: 240px;
+  border-radius: 10px;
+  border: 1px solid #c4c4c4;
+
   mat-card-content {
     white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-top: 10px;
+    gap: 5px;
   }
 
   @media only screen and (min-width: 768px) {
     width: 400px; // Largura fixa para telas grandes
-    height: 250px; // Altura fixa para telas grandes
   }
 }
 .card_content{
-  margin-top: 5px;
+  text-align: left;
 }
 
 .card-list {
@@ -28,4 +32,20 @@
     background-color: #f1f1f1;
     border-radius: 20px;
   }
+}
+.mdc-card__media:last-child{
+  border-radius: 10px;
+  border: 1px solid #c9c9c9;
+}
+
+.mat-mdc-card-subtitle{
+  display: flex;
+  align-items: flex-start;
+  padding-right: 10px;
+  margin: 0;
+}
+.mat-mdc-card-title{
+  display: flex;
+  align-items: flex-start;
+  padding-right: 10px;
 }

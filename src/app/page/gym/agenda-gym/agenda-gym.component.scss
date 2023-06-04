@@ -1,0 +1,60 @@
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px 0;
+
+  .menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    &__mes {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &__dias {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+
+      .dias-semana {
+        display: flex;
+        gap: 3px;
+      }
+    }
+  }
+}
+
+.dias-semana {
+  .dia {
+
+    &.hide-day {
+      display: none;
+    }
+  }
+}
+.content {
+  max-width: 1280px;
+  margin: 0 auto;
+  .card {
+    min-width: 350px;
+    max-width: 400px;
+    height: 180px;
+    gap: 5px;
+    border-radius: 10px;
+    border: 1px solid #c4c4c4;
+  }
+}
+.mat-card-actions-end {
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.red-subtitle{
+  color: #b00020;
+}

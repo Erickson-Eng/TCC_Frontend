@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +10,8 @@ import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 import { environment } from '../environments/environment';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { InterceptorModule } from './interceptor/interceptor.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
 export function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -46,8 +48,13 @@ export function initializeKeycloak(keycloak: KeycloakService) {
     AppMaterialModule,
     KeycloakAngularModule,
     InterceptorModule,
+    NgbModule,
+    MatNativeDateModule,
   ],
-  providers: [JwtHelperService],
+  providers: [
+    JwtHelperService,
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

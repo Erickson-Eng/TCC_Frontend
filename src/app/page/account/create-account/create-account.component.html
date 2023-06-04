@@ -234,14 +234,15 @@
       </mat-tab-group>
       <div class="actions">
         <button
-          mat-button
+          mat-raised-button
           (click)="previousTab()"
           [disabled]="selectedTabIndex === 0"
         >
           Voltar
         </button>
         <button
-          mat-button
+          mat-raised-button
+          color="primary"
           (click)="nextTab()"
           [disabled]="!tabIsValid()"
           *ngIf="!validForm(); else botaoSalvar"

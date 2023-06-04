@@ -10,8 +10,8 @@
         src="../../../../assets/images/3d_avatar_21.png"
         alt="Profile Picture"
       />
-      <h2 class="fullname">King James</h2>
-      <p class="username">@kingjames</p>
+      <h2 class="fullname">{{athlete.firstName}}</h2>
+      <p class="username">@{{athlete_username}}</p>
 
       <div class="stats">
         <button mat-stroked-button color="primary">Editar perfil</button>
@@ -21,8 +21,30 @@
 
     <div class="profile-tabs">
       <mat-tab-group>
-        <mat-tab label="Estatisticas"></mat-tab>
-        <mat-tab label="Comunidades"></mat-tab>
+        <mat-tab label="Estatisticas" class="tabs"></mat-tab>
+        <mat-tab label="Comunidades">
+          <div *ngFor="let community of communities" class="tab-container">
+            <mat-card (click)="redirectToCardDetails(community.id)" class="card">
+              <mat-card-header>
+                <div class="card-header-content">
+                  <div class="image-container">
+                    <img
+                      alt="athlete image"
+                      mat-card-sm-image
+                      [src]="community.imageSrc"
+                    />
+                  </div>
+                  <div class="text-container">
+                    <mat-card-title-group>
+                      <mat-card-subtitle class="subtitulo">id: {{community.id}}</mat-card-subtitle>
+                      <mat-card-title class="titulo">{{ community.name }}</mat-card-title>
+                    </mat-card-title-group>
+                  </div>
+                </div>
+              </mat-card-header>
+            </mat-card>
+          </div>
+        </mat-tab>
       </mat-tab-group>
     </div>
   </div>
